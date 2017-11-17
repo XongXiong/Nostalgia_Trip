@@ -16,7 +16,7 @@
     <md-content layout-margin="" ng-controller="LoginController as lc">
       <h1 class="lead">Login</h1>
       <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
-        <form ng-submit="lc.login()">
+        <form ng-submit="lc.login(); uc.toggleLeft()">
           <div>
             <label for="username">Username:</label>
             <input type="text" ng-model="lc.user.username" />
@@ -33,7 +33,7 @@
     </md-content>
   </md-sidenav>
   <md-content class="navSide">
-    <div layout="row" layout-wrap layout-margin layout-align="center">
+    <div layout="row" layout-wrap  layout-align="center center" class="navSide">
         <a ng-click="uc.toggleLeft()" class="material-icons">
           menu
         </a>
