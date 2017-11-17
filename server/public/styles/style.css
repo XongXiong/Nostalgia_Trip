@@ -95,3 +95,7 @@ li a:hover {
      make sure you have an empty gif 
   background-image: url('empty.gif');*/
 }
+
+.navSide {
+  width: 30px;
+}
