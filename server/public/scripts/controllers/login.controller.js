@@ -7,9 +7,7 @@ myApp.controller('LoginController', function($http, $location, UserService) {
     };
     vm.message = '';
 
-    vm.status = false;
-
-    vm.login = function() {
+    vm.login = () => {
       console.log('LoginController -- login');
       if(vm.user.username === '' || vm.user.password === '') {
         vm.message = "Enter your username and password!";
@@ -19,7 +17,6 @@ myApp.controller('LoginController', function($http, $location, UserService) {
           if(response.data.username) {
             console.log('LoginController -- login -- success: ', response.data);
             // location works with SPA (ng-route)
-            vm.status = !vm.status;
             $location.path('/home'); // http://localhost:5000/#/home
           } else {
             console.log('LoginController -- login -- failure: ', response);
@@ -32,7 +29,7 @@ myApp.controller('LoginController', function($http, $location, UserService) {
       }
     };
 
-    vm.registerUser = function() {
+    vm.registerUser = () => {
       console.log('LoginController -- registerUser');
       if(vm.user.username === '' || vm.user.password === '') {
         vm.message = "Choose a username and password!";

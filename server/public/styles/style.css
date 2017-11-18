@@ -101,3 +101,8 @@ li a:hover {
   height: 30px;
   background-color: rgb(117, 117, 117);
 }
+
+a {
+  font-size: 30px;
+  color: white;
+}

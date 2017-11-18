@@ -2,13 +2,11 @@ myApp.service('UserService', function($http, $location){
   console.log('UserService Loaded');
   var self = this;
   self.userObject = {};
-  self.status = {};
+  self.loggedIn = false;
 
-  self.getuser = function(){
+  self.getuser = () => {
     console.log('UserService -- getuser');
     $http.get('/user').then(function(response) {
-      self.status.data = response.data;
-      console.log(self.status.data);
         if(response.data.username) {
             // user has a curret session on the server
             self.userObject.userName = response.data.username;
@@ -24,11 +22,15 @@ myApp.service('UserService', function($http, $location){
     });
   },
 
-  self.logout = function() {
+  self.logout = () => {
     console.log('UserService -- logout');
     $http.get('/user/logout').then(function(response) {
       console.log('UserService -- logout -- logged out');
       $location.path("/home");
     });
+  }
+
+  self.toggleLog = () => {
+    self.loggedIn = !self.loggedIn;
   }
 });
