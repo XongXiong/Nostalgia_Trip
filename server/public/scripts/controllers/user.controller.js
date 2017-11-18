@@ -3,6 +3,7 @@ myApp.controller('UserController', function(UserService, $mdSidenav) {
   var vm = this;
   vm.userService = UserService;
   vm.userObject = UserService.userObject;
+  vm.userStatus = UserService.status;
 
   vm.toggleLeft = buildToggler('left');
 

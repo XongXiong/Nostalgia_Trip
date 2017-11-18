@@ -2,10 +2,13 @@ myApp.service('UserService', function($http, $location){
   console.log('UserService Loaded');
   var self = this;
   self.userObject = {};
+  self.status = {};
 
   self.getuser = function(){
     console.log('UserService -- getuser');
     $http.get('/user').then(function(response) {
+      self.status.data = response.data;
+      console.log(self.status.data);
         if(response.data.username) {
             // user has a curret session on the server
             self.userObject.userName = response.data.username;
