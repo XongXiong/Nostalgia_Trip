@@ -1,3 +1,30 @@
 <div class="container">
   <h1 class="lead">Nostalgia Trip, where memories live on.</h1>
 </div>
+<div flex layout="row" layout-wrap>
+<div flex="33" class="itemCard" ng-repeat="post in pc.posts">
+    <md-card >
+        <img ng-src="https://scontent.ffar1-1.fna.fbcdn.net/v/t31.0-8/22555659_1727158440629943_40649371309642927_o.jpg?oh=1fad174b1e41ed40d5ec9f5d6eb8d3b6&oe=5A617EB0" class="md-card-image itemImg" alt="Washed Out">
+        <md-card-title align="center">
+            <md-card-title-text>
+                <span class="md-headline">{{post.name}}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="column" layout-align="start center">
+        <md-button class="material-icons">arrow_upward</md-button>
+                <p>Votes: {{post.votes}}</p>
+        <md-button class="material-icons">arrow_downward</md-button>
+    </md-card-actions>
+    <md-card-content>
+        <h4>Description:</h4>
+        <p>
+            {{post.desc}}
+        </p>
+        <h4>Learn more:</h4>
+        <a href="{{post.ref}}" class="itemRef">
+            Click here to learn more about this
+        </a>
+    </md-card-content>
+</md-card>
+</div>
+</div>

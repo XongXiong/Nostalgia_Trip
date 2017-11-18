@@ -34,13 +34,13 @@
       <md-content ng-show="uc.userService.loggedIn">
         <div class="navbar">
           <div>
-            <a href="#/user">User Home</a>
+            <a href="#/user" ng-click="uc.toggleLeft()">User Home</a>
           </div>
           <div>
-            <a href="#/info">Info Page</a>
+            <a href="#/info" ng-click="uc.toggleLeft()">Info Page</a>
           </div>
           <div>
-            <a href="#/add">Add Post</a>
+            <a href="#/add" ng-click="uc.toggleLeft()">Add Post</a>
           </div>
         </div>
       </md-content>

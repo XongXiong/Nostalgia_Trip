@@ -106,3 +106,32 @@ a {
   font-size: 30px;
   color: white;
 }
+
+.firstBox {
+background-color: red
+}
+
+.secondBox {
+background-color: blue
+}
+
+.thirdBox {
+background-color: blueviolet
+}
+
+.postBox {
+  height: 300px;
+  border: solid black 1px;
+}
+
+.boxContent {
+  height: 280px;
+}
+
+.itemCard {
+  width: 33%;
+}
+
+.itemRef {
+  color: black;
+}
