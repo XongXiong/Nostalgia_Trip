@@ -132,6 +132,12 @@ background-color: blueviolet
   width: 33%;
 }
 
-.itemRef {
+.itemContent {
   color: black;
+  font-size: 16px;
+}
+
+#register {
+  color: black;
+  font-size: 14px;
 }

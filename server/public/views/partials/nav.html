@@ -27,7 +27,7 @@
             </div>
             <div>
               <input class="btn btn-default" type="submit" name="submit" value="Log In" />
-              <a href="#register">Register</a>
+              <a href="#register" id="register" ng-click="uc.toggleLeft()">Register</a>
             </div>
           </form>
       </md-content>
@@ -41,6 +41,9 @@
           </div>
           <div>
             <a href="#/add" ng-click="uc.toggleLeft()">Add Post</a>
+          </div>
+          <div>
+            <button class="btn btn-default" ng-click="uc.userService.logout(); uc.userService.toggleLog(); uc.toggleLeft()">Log Out</button>
           </div>
         </div>
       </md-content>

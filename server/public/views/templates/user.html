@@ -1,5 +1,40 @@
 <div class="container">
-
-    <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
-    <button class="btn btn-default" ng-click="uc.userService.logout(); uc.userService.toggleLog()">Log Out</button>
+    <br>
+    <div>
+        <div layout="row" layout-margin="">
+            <div flex="20" class="postBox">
+                This box
+            </div>
+            <div flex="3"></div>
+            <div flex="80" class="postBox">
+                Other box
+            </div>
+        </div>
+        <div flex layout="row" layout-wrap ng-controller="PostController as pc">
+            <div flex="33" class="itemCard" ng-repeat="post in pc.posts">
+                <md-card>
+                    <img ng-src="https://scontent.ffar1-1.fna.fbcdn.net/v/t31.0-8/22555659_1727158440629943_40649371309642927_o.jpg?oh=1fad174b1e41ed40d5ec9f5d6eb8d3b6&oe=5A617EB0"
+                        class="md-card-image itemImg" alt="Washed Out">
+                    <md-card-title align="center">
+                        <md-card-title-text>
+                            <span class="md-headline">{{post.name}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-actions layout="column" layout-align="start center">
+                        <md-button class="material-icons">arrow_upward</md-button>
+                        <p>Votes: {{post.votes}}</p>
+                        <md-button class="material-icons">arrow_downward</md-button>
+                    </md-card-actions>
+                    <md-card-content>
+                        <h3>Description:</h3>
+                        <p>
+                            {{post.desc}}
+                        </p>
+                        <h3>Learn more:</h3>
+                        <button ng-click="pc.search(post.name)">Click to learn more about this</button>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>
 </div>

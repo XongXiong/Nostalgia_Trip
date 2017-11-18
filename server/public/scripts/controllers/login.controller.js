@@ -3,7 +3,10 @@ myApp.controller('LoginController', function($http, $location, UserService) {
     var vm = this;
     vm.user = {
       username: '',
-      password: ''
+      password: '',
+      password2: '',
+      firstName: '',
+      lastName: ''
     };
     vm.message = '';
 
@@ -33,6 +36,8 @@ myApp.controller('LoginController', function($http, $location, UserService) {
       console.log('LoginController -- registerUser');
       if(vm.user.username === '' || vm.user.password === '') {
         vm.message = "Choose a username and password!";
+      } else if(vm.user.password !== vm.user.password2) {
+        vm.message = "Passwords don't match!";
       } else {
         console.log('LoginController -- registerUser -- sending to server...', vm.user);
         $http.post('/register', vm.user).then(function(response) {

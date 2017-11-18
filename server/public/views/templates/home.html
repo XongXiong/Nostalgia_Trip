@@ -16,14 +16,12 @@
         <md-button class="material-icons">arrow_downward</md-button>
     </md-card-actions>
     <md-card-content>
-        <h4>Description:</h4>
+        <h3>Description:</h3>
         <p>
             {{post.desc}}
         </p>
-        <h4>Learn more:</h4>
-        <a href="{{post.ref}}" class="itemRef">
-            Click here to learn more about this
-        </a>
+        <h3>Learn more:</h3>
+        <button ng-click="pc.search(post.name)">Click to learn more about this</button>
     </md-card-content>
 </md-card>
 </div>
