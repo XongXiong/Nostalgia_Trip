@@ -11,9 +11,9 @@
             </md-card-title-text>
         </md-card-title>
         <md-card-actions layout="column" layout-align="start center">
-        <md-button class="material-icons">arrow_upward</md-button>
+        <md-button class="material-icons" ng-click="pc.userService.postVote('up')">arrow_upward</md-button>
                 <p>Votes: {{post.votes}}</p>
-        <md-button class="material-icons">arrow_downward</md-button>
+        <md-button class="material-icons" ng-click="pc.userService.postVote('down')">arrow_downward</md-button>
     </md-card-actions>
     <md-card-content>
         <h3>Description:</h3>
