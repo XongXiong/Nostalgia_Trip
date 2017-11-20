@@ -10,11 +10,6 @@
                 <span class="md-headline">{{post.postname}}</span>
             </md-card-title-text>
         </md-card-title>
-        <md-card-actions layout="column" layout-align="start center">
-        <md-button class="material-icons" ng-click="pc.userService.postVote('up')">arrow_upward</md-button>
-                <p>Votes: {{post.votes}}</p>
-        <md-button class="material-icons" ng-click="pc.userService.postVote('down')">arrow_downward</md-button>
-    </md-card-actions>
     <md-card-content>
         <h3>Description:</h3>
         <p>
@@ -23,6 +18,12 @@
         <h3>Learn more:</h3>
         <button ng-click="pc.search(post.name)">Click to learn more about this</button>
     </md-card-content>
+    <md-card-actions layout-align="left">
+        <h3>Relatable?</h3>
+        <md-button class="material-icons md-18 md-raised iconBut" ng-click="pc.userService.postVote('up')">thumb_up</md-button>
+        <md-button class="material-icons md-18 md-raised iconBut" ng-click="pc.userService.postVote('down')">thumb_down</md-button>
+        <p>{{post.votes}} people can relate to this.</p>
+    </md-card-actions>
 </md-card>
 </div>
 </div>

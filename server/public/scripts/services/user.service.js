@@ -37,14 +37,18 @@ myApp.service('UserService', function($http, $location){
   }
 
   self.postVote = (upDown) => {
-    if (upDown === 'up') {
-      console.log('upvote');
-    } else if (upDown === 'down') {
-      console.log('downvote');
-    } else {
-      console.log('not working');
-    }
+    if(self.loggedIn === true){
+      if (upDown === 'up') {
+        console.log('upvote');
+      } else if (upDown === 'down') {
+        console.log('downvote');
+      } else {
+        console.log('not working');
+      }
+  } else {
+    alert('You must be logged in to relate!');
   }
+}
 
   self.getAllPosts = () => {
     $http.get('/post').then(function(response) {
