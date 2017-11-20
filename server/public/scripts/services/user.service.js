@@ -3,6 +3,7 @@ myApp.service('UserService', function($http, $location){
   var self = this;
   self.userObject = {};
   self.loggedIn = false;
+  self.posts = {data: []};
 
   self.getuser = () => {
     console.log('UserService -- getuser');
@@ -46,6 +47,11 @@ myApp.service('UserService', function($http, $location){
   }
 
   self.getAllPosts = () => {
-    $http.get('/post', )
+    $http.get('/post').then(function(response) {
+      console.log(response.data);
+      self.posts.data = response.data;
+    }).catch(function(err) {
+      console.log('Could not get all posts');
+    });
   }
 });
