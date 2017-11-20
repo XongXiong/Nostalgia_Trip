@@ -1,0 +1,24 @@
+<div class="container">
+    <div layout="column" layout-margin="">
+    <form ng-submit="pc.addPost()">
+        <div>
+            <label for="postName"><h2>Post Name:<h2></label>
+            <input type="text" class="addInput" ng-model="pc.postToAdd.postName"/>
+        </div>
+        
+        <div>
+            <label for="postDesc"/><h2>Description:</h2></label>
+            <input type="text" ng-model="pc.postToAdd.postDesc" id="descInput"/>
+        </div>
+     
+        <div>
+            <label for="postPic"><h2>Picture URL:</h2></label>
+            <input type="text" class="addInput" ng-model="pc.postToAdd.postPic"/>
+        </div>
+        <br>
+        <div>
+            <input class="btn btn-default" type="submit" name="submit" value="Add post" id=""/>
+        </div>
+    </form>
+</div>
+</div>

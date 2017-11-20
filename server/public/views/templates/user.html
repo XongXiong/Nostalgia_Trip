@@ -1,13 +1,24 @@
 <div class="container">
     <br>
+    <div layout-margin="">
+        <h1>Hoppii</h1>
+        <md-button class="md-raised md-primary">Edit Info</md-button>
+    </div>
     <div>
         <div layout="row" layout-margin="">
-            <div flex="20" class="postBox">
-                This box
+            <div flex="20" class="bioImgBox" layout="row" layout-align="center center">
+                <img ng-src="https://scontent.ffar1-1.fna.fbcdn.net/v/t31.0-8/22339631_1712728868739567_816282716283530685_o.jpg?oh=87710fa1aab4cc44d14779e5768437ff&oe=5AA81035" class=" bioImg">
             </div>
             <div flex="3"></div>
-            <div flex="80" class="postBox">
-                Other box
+            <div flex="80" class="bioInfo">
+                <div layout="column" layout-margin="">
+                    <div flex="10" class="">
+                        first name last name
+                    </div>
+                    <div flex="90" class="bioBox">
+                        Bio
+                    </div>
+                </div>
             </div>
         </div>
         <div flex layout="row" layout-wrap ng-controller="PostController as pc">
@@ -31,7 +42,7 @@
                             {{post.desc}}
                         </p>
                         <h3>Learn more:</h3>
-                        <button ng-click="pc.search(post.name)">Click to learn more about this</button>
+                        <md-button ng-click="pc.search(post.name)" class="md-raised">Click to learn more about this</md-button>
                     </md-card-content>
                 </md-card>
             </div>

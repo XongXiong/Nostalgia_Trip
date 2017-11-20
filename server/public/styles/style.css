@@ -119,9 +119,13 @@ background-color: blue
 background-color: blueviolet
 }
 
-.postBox {
+.bioImgBox, .bioInfo {
   height: 300px;
   border: solid black 1px;
+}
+
+.bioImgBox {
+  background-color: black;
 }
 
 .boxContent {
@@ -140,4 +144,23 @@ background-color: blueviolet
 #register {
   color: black;
   font-size: 14px;
+}
+
+#descInput {
+  height: 300px;
+  width: 100%;
+}
+
+.addInput {
+  height: 25px;
+  width: 300px;
+}
+
+.bioBox {
+  height: 240px;
+  background-color: red;
+}
+
+.bioImg {
+  height: 295px;
 }
