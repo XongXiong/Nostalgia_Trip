@@ -36,26 +36,43 @@ myApp.service('UserService', function($http, $location){
     self.loggedIn = !self.loggedIn;
   }
 
-  self.postVote = (upDown) => {
+  self.getAllPosts = () => {
+    $http.get('/post').then(function (response) {
+      console.log(response.data);
+      self.posts.data = response.data;
+    }).catch(function (err) {
+      console.log('Could not get all posts');
+    });
+  }
+
+  self.postVote = (upDown, postId, votes) => {
+    let postVotes = {
+      voteCount: votes
+    }
     if(self.loggedIn === true){
       if (upDown === 'up') {
-        console.log('upvote');
+        postVotes.voteCount += 1;
+        console.log(postVotes);
+        $http.put('/post/' + postId, postVotes).then(function(response) {
+          console.log('Upvote!');
+          self.getAllPosts();
+        }).catch(function(err) {
+          console.log('Error upvoting');
+        })
       } else if (upDown === 'down') {
-        console.log('downvote');
+        postVotes.voteCount -= 1;
+        console.log(postVotes);
+        $http.put('/post/' + postId, postVotes).then(function (response) {
+          console.log('Downvote!');
+          self.getAllPosts();
+        }).catch(function (err) {
+          console.log('Error downvoting');
+        })
       } else {
-        console.log('not working');
+        console.log('Vote not working');
       }
   } else {
     alert('You must be logged in to relate!');
   }
 }
-
-  self.getAllPosts = () => {
-    $http.get('/post').then(function(response) {
-      console.log(response.data);
-      self.posts.data = response.data;
-    }).catch(function(err) {
-      console.log('Could not get all posts');
-    });
-  }
 });

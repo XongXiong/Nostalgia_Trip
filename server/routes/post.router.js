@@ -16,8 +16,10 @@ router.post('/add', function(req, res) {
     console.log(req.body);
 });
 
-router.get('/:username', function(req, res) {
-    console.log(req.body.id);
+router.put('/:p_id', function(req, res) {
+    let postId = req.params.p_id;
+    let newVote = req.body.voteCount;
+    console.log('this is the new vote', newVote);
     pool.connect(function (errorConnectingToDb, db, done) {
         if (errorConnectingToDb) {
             // There was an error and no connection was made
@@ -26,8 +28,8 @@ router.get('/:username', function(req, res) {
         } else {
             // We connected to the db!!!!! pool -1
             //added ordering
-            let queryText = 'SELECT * FROM "posts" WHERE "id" = $1;';
-            db.query(queryText, [req.body.id], function (errorMakingQuery, result) {
+            let queryText = 'UPDATE "posts" SET "votes" = $1 WHERE "p_id" = $2;';
+            db.query(queryText, [newVote, postId], function (errorMakingQuery, result) {
                 // We have received an error or result at this point
                 done(); // pool +1
                 if (errorMakingQuery) {
@@ -50,7 +52,7 @@ router.get('/', function (req, res) {
         } else {
             // We connected to the db!!!!! pool -1
             //added ordering
-            let queryText = 'SELECT * FROM "posts"';
+            let queryText = 'SELECT * FROM "posts" ORDER BY "p_id"';
             db.query(queryText, function (errorMakingQuery, result) {
                 // We have received an error or result at this point
                 done(); // pool +1
