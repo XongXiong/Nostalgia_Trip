@@ -20,7 +20,7 @@
     "body-parser": "^1.13.3",
     "bootstrap": "^3.3.5",
     "express": "^4.13.1",
-    "express-session": "^1.13.0",
+    "express-session": "^1.15.6",
     "jquery": "^2.1.4",
     "lmgtfy": "^1.0.0",
     "material-design-icons": "^3.0.1",

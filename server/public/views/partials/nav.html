@@ -1,15 +1,17 @@
-<div class="navbar">
+<div class="navbar" ng-controller="UserController as uc">
   <div class="container">
     <ul>
+      <div ng-if="uc.userService.userObject.id !== undefined">
       <li><a href="#/user">User Home</a></li>
       <li><a href="#/info">Info Page</a></li>
       <li><a href="#/add">Add Post</a></li>
-      <li><a href="#/login">Log In</a></li>
-      <li><a href="#/login">Log Out</a></li>
+      </div>
+      <li><md-button class="md-raised" ng-if="uc.userService.userObject.id === undefined" href="#/login">Log In</md-button></li>
+      <li><md-button class="md-raised" ng-if="uc.userService.userObject.id !== undefined" ng-click="uc.userService.logout()">Log Out</md-button></li>
     </ul>
   </div>
 </div>
-<div ng-controller="LoginController as lc">
+<!-- <div ng-controller="LoginController as lc">
   <section layout="row" flex="" ng-controller="UserController as uc">
     <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
       <md-toolbar class="md-theme-indigo" ng-hide="uc.userService.loggedIn">
@@ -58,4 +60,4 @@
       </div>
     </md-content>
   </section>
-</div>
+</div> -->

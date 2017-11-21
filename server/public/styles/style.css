@@ -164,3 +164,9 @@ background-color: blueviolet
 .bioImg {
   height: 295px;
 }
+
+#loginSect {
+  background-color: red;
+  height: 300px;
+  border: solid black 1px;
+}
