@@ -4,6 +4,7 @@ myApp.service('UserService', function ($http, $location) {
   self.userObject = {};
   self.loggedIn = false;
   self.posts = { data: [] };
+  self.isEditing = false;
 
   self.getAllPosts = () => {
     $http.get('/post').then(function (response) {
@@ -79,11 +80,34 @@ myApp.service('UserService', function ($http, $location) {
     }
   }
 
-  self.editPost = (post) => {
-    console.log(post);
-    let newPost = {
-
-    }
+  self.editedPost = {
+    postname: '',
+    postdesc: '',
+    postpic: '',
+    postid: ''
   }
 
+  self.editPost = (post) => {
+    console.log(post);
+    self.isEditing = !self.isEditing;
+    $location.path('/add')
+    self.editedPost = {
+      postname: post.postname,
+      postdesc: post.postdesc,
+      postpic: post.postpic,
+      postid: post.p_id
+    }
+    return self.editedPost;
+    console.log(self.editedPost);
+    console.log(self.isEditing);
+  }
+  
+  self.addEditedPost = () => {
+    console.log(self.editedPost);
+    $http.put('/post/edit/' + self.editedPost.postid, self.editedPost).then(function(response) {
+      console.log(response);
+      $location.path('/home');
+      self.getAllPosts();
+    })
+  }
 });

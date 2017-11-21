@@ -1,5 +1,5 @@
 <div class="container">
-    <div layout="column" layout-margin="">
+    <div layout="column" layout-margin="" ng-hide="pc.userService.isEditing">
     <form ng-submit="pc.addPost()">
         <div>
             <label for="postName"><h2>Post Name:<h2></label>
@@ -18,6 +18,35 @@
         <br>
         <div>
             <input class="btn btn-default" type="submit" name="submit" value="Add post" id=""/>
+        </div>
+    </form>
+</div>
+<div layout="column" layout-margin="" ng-show="pc.userService.isEditing">
+    <form ng-submit="pc.userService.addEditedPost(pc.userService.editedPost)">
+        <div>
+            <label for="postname">
+                <h2>Post Name:
+                    <h2>
+            </label>
+            <input type="text" class="addInput" ng-model="pc.userService.editedPost.postname" ng-value="pc.userService.editedPost.postname"/>
+        </div>
+
+        <div>
+            <label for="postdesc" />
+            <h2>Description:</h2>
+            </label>
+            <input type="text" ng-model="pc.userService.editedPost.postdesc" ng-value="pc.userService.editedPost.postdesc" id="descInput" />
+        </div>
+
+        <div>
+            <label for="postpic">
+                <h2>Picture URL:</h2>
+            </label>
+            <input type="text" class="addInput" ng-model="pc.userService.editedPost.postpic" ng-value="pc.userService.editedPost.postpic"/>
+        </div>
+        <br>
+        <div>
+            <input class="btn btn-default" type="submit" name="submit" value="Edit post" id="" />
         </div>
     </form>
 </div>

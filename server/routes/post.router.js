@@ -67,4 +67,33 @@ router.get('/', function (req, res) {
     }); // END POOL
 })
 
+
+router.put('/edit/:p_id', function (req, res) {
+    let postId = req.params.p_id;
+    let postname =  req.body.postname;
+    let postdesc =  req.body.postdesc;
+    let postpic =  req.body.postpic;
+    
+    pool.connect(function (errorConnectingToDb, db, done) {
+        if (errorConnectingToDb) {
+            // There was an error and no connection was made
+            console.log('Error connecting', errorConnectingToDb);
+            res.sendStatus(500);
+        } else {
+            // We connected to the db!!!!! pool -1
+            //added ordering
+            let queryText = 'UPDATE "posts" SET "postname" = $1, "postdesc" = $2, "postpic" = $3 WHERE "p_id" = $4;';
+            db.query(queryText, [postname, postdesc, postpic, postId], function (errorMakingQuery, result) {
+                // We have received an error or result at this point
+                done(); // pool +1
+                if (errorMakingQuery) {
+                    console.log('Error making query', errorMakingQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                }
+            }); // END QUERY
+        }
+    }); // END POOL
+})
 module.exports = router;

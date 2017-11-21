@@ -1,9 +1,10 @@
 <div class="navbar" ng-controller="UserController as uc">
   <div class="container">
     <ul>
-      <div ng-if="uc.userService.userObject.id !== undefined">
-      <li><a href="#/user">User Home</a></li>
+      <li><a href="#/home">Home</a></li>
       <li><a href="#/info">Info Page</a></li>
+      <div ng-if="uc.userService.userObject.id !== undefined">
+      <li><a href="#/user">User Account</a></li>
       <li><a href="#/add">Add Post</a></li>
       </div>
       <li><md-button class="md-raised" ng-if="uc.userService.userObject.id === undefined" href="#/login">Log In</md-button></li>
