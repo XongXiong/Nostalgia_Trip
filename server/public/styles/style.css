@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -24,8 +25,8 @@ body, html {
   margin-top: 10px;
 }
 
-.container p{
-  margin-top : 14px;
+.container p {
+  margin-top: 14px;
 }
 
 .message {
@@ -37,14 +38,14 @@ body, html {
 }
 
 .message:nth-child(odd) {
-   background-color: #eeeeee;
+  background-color: #eeeeee;
 }
 
 .message:nth-child(even) {
   background-color: #f8f8f8;
 }
 
-.btn-danger{
+.btn-danger {
   margin-left: 10px;
 }
 
@@ -73,7 +74,9 @@ li a {
   text-decoration: none;
 }
 
+
 /* Change the link color to #111 (black) on hover */
+
 li a:hover {
   text-decoration: underline;
   color: #eee;
@@ -108,18 +111,19 @@ a {
 }
 
 .firstBox {
-background-color: red
+  background-color: red
 }
 
 .secondBox {
-background-color: blue
+  background-color: blue
 }
 
 .thirdBox {
-background-color: blueviolet
+  background-color: blueviolet
 }
 
-.bioImgBox, .bioInfo {
+.bioImgBox,
+.bioInfo {
   height: 300px;
   border: solid black 1px;
 }
@@ -146,14 +150,10 @@ background-color: blueviolet
   font-size: 14px;
 }
 
-#descInput {
-  height: 300px;
-  width: 100%;
-}
-
 .addInput {
   height: 25px;
-  width: 300px;
+  width: 80%;
+  font-size: 21px;
 }
 
 .bioBox {

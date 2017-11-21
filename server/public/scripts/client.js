@@ -1,23 +1,23 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages', ]);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages',]);
 
 /// Routes ///
-myApp.config(function($routeProvider, $locationProvider) {
+myApp.config(function ($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
   console.log('myApp -- config')
   $routeProvider
-  .when('/home', {
-    templateUrl: '/views/templates/home.html',
-    controller: 'PostController as pc',
-  })
-  .when('/add', {
-    templateUrl: '/views/templates/add.html',
-    controller: 'PostController as pc',
-    resolve: {
-      getuser: function (UserService) {
-        return UserService.getuser();
+    .when('/home', {
+      templateUrl: '/views/templates/home.html',
+      controller: 'PostController as pc',
+    })
+    .when('/add', {
+      templateUrl: '/views/templates/add.html',
+      controller: 'PostController as pc',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
       }
-    }
-  })
+    })
     .when('/login', {
       templateUrl: '/views/templates/login.html',
       controller: 'LoginController as lc',
@@ -30,7 +30,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }
@@ -39,7 +39,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/info.html',
       controller: 'InfoController',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }

@@ -2,7 +2,6 @@ myApp.service('UserService', function ($http, $location) {
   console.log('UserService Loaded');
   var self = this;
   self.userObject = {};
-  self.loggedIn = false;
   self.posts = { data: [] };
   self.isEditing = false;
 
@@ -39,14 +38,11 @@ myApp.service('UserService', function ($http, $location) {
       console.log('UserService -- logout');
       $http.get('/user/logout').then(function (response) {
         console.log('UserService -- logout -- logged out');
+        self.isEditing = !self.isEditing;
         $location.path("/home");
         self.userObject = {};
       });
     }
-
-  self.toggleLog = () => {
-    self.loggedIn = !self.loggedIn;
-  }
 
   self.postVote = (upDown, postId, votes) => {
     let postVotes = {
@@ -101,13 +97,38 @@ myApp.service('UserService', function ($http, $location) {
     console.log(self.editedPost);
     console.log(self.isEditing);
   }
-  
+
   self.addEditedPost = () => {
     console.log(self.editedPost);
-    $http.put('/post/edit/' + self.editedPost.postid, self.editedPost).then(function(response) {
-      console.log(response);
+    $http.put('/post/edit/' + self.editedPost.postid, self.editedPost).then(function (response) {
+      self.isEditing = !self.isEditing;
       $location.path('/home');
       self.getAllPosts();
+    })
+  }
+
+  self.deletePost = (postId) => {
+    $http.delete('/post/' + postId).then(function (response) {
+      console.log('Post Deleted');
+      self.getAllPosts();
+    })
+  }
+
+  self.addPost = (newPost) => {
+    console.log(self.userObject);
+    console.log(newPost);
+    let postToAdd = {
+      postname: newPost.postname,
+      postdesc: newPost.postdesc,
+      postpic: newPost.postpic,
+      id: self.userObject.id
+    }
+    if (postToAdd.postpic === '' || postToAdd == undefined) {
+      postToAdd.postpic = 'http://hdwall.us/wallpaper/abstract_artistic_clocks_lacza_psychedelic_surreal_surrealism_time_desktop_2560x1440_hd-wallpaper-1331725.jpg';
+    }
+    console.log(postToAdd);
+    $http.post('/post/add', postToAdd).then(function (response) {
+      console.log(response);
     })
   }
 });

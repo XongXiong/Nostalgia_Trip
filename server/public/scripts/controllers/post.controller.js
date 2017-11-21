@@ -2,30 +2,28 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
     console.log('PostController created');
     let vm = this;
     vm.userService = UserService
-    
+
     vm.posts = UserService.posts;
 
-    let postToAdd = {
-        postName: '',
-        postDesc: '',
-        postPic: ''
+    vm.postToAdd = {
+        postname: '',
+        postdesc: '',
+        postpic: ''
     }
-
 
     UserService.getuser();
 
     vm.search = (postName) => {
-        $http.get('/post/' + postName).then(function(response) {
+        $http.get('/post/' + postName).then(function (response) {
             console.log(response);
             let lmgtfyUrl = response.data;
-            window.open(lmgtfyUrl, "_blank"); 
+            window.open(lmgtfyUrl, "_blank");
         })
     }
 
     vm.addPost = () => {
-        $http.post('/post/add', postToAdd).then(function(response) {
-            console.log(response);
-        })
+        UserService.addPost(vm.postToAdd);
+            vm.postToAdd = null;
     }
 
     UserService.getAllPosts();
@@ -34,12 +32,12 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
         // Appending dialog to document.body to cover sidenav in docs app
         var confirm = $mdDialog.prompt()
             .title('What would you like to edit?')
-            .initialValue({post})
+            .initialValue({ post })
             .targetEvent(ev)
             .ok('Okay!')
             .cancel('I\'m a cat person');
-            console.log(post);
-            console.log(confirm);
+        console.log(post);
+        console.log(confirm);
         $mdDialog.show(confirm).then(function (result) {
             console.log(result);
             vm.status = 'You decided to name your dog ' + result + '.';
@@ -47,6 +45,6 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
             vm.status = 'You didn\'t name your dog.';
         });
     };
-    
-    
+
+
 });

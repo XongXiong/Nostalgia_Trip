@@ -1,4 +1,4 @@
-myApp.controller('UserController', function(UserService, $mdSidenav) {
+myApp.controller('UserController', function (UserService, $mdSidenav) {
   console.log('UserController created');
   var vm = this;
   vm.userService = UserService;

@@ -11,12 +11,33 @@ router.get('/:postName', function (req, res) {
     res.send(searchResult);
 });
 
-router.post('/add', function(req, res) {
+router.post('/add', function (req, res) {
     console.log('post /post/add route');
     console.log(req.body);
+    var post = req.body;
+    console.log('this is req.body', post);
+    pool.connect(function (errorConnectingToDb, db, done) {
+        if (errorConnectingToDb) {
+            console.log('Error connecting to DB');
+            res.sendStatus(500);
+        } else {
+            var queryText = 'INSERT INTO posts ("postname", "postdesc", "postpic", "id") VALUES ($1, $2, $3, $4);';
+            db.query(queryText, [post.postname, post.postdesc, post.postpic, post.id], function (errorQueryingDb, result) {
+                done();
+                if (errorQueryingDb) {
+                    console.log('Error in POST route querying database with');
+                    console.log(queryText, errorQueryingDb);
+                    res.sendStatus(500);
+                } else {
+                    console.log('New Post added');
+                    res.sendStatus(201);
+                }
+            });
+        }
+    });
 });
 
-router.put('/:p_id', function(req, res) {
+router.put('/:p_id', function (req, res) {
     let postId = req.params.p_id;
     let newVote = req.body.voteCount;
     console.log('this is the new vote', newVote);
@@ -36,7 +57,7 @@ router.put('/:p_id', function(req, res) {
                     console.log('Error making query', errorMakingQuery);
                     res.sendStatus(500);
                 } else {
-                    res.send(result.rows);
+                    res.sendStatus(200);
                 }
             }); // END QUERY
         }
@@ -70,10 +91,10 @@ router.get('/', function (req, res) {
 
 router.put('/edit/:p_id', function (req, res) {
     let postId = req.params.p_id;
-    let postname =  req.body.postname;
-    let postdesc =  req.body.postdesc;
-    let postpic =  req.body.postpic;
-    
+    let postname = req.body.postname;
+    let postdesc = req.body.postdesc;
+    let postpic = req.body.postpic;
+
     pool.connect(function (errorConnectingToDb, db, done) {
         if (errorConnectingToDb) {
             // There was an error and no connection was made
@@ -90,7 +111,32 @@ router.put('/edit/:p_id', function (req, res) {
                     console.log('Error making query', errorMakingQuery);
                     res.sendStatus(500);
                 } else {
-                    res.send(result.rows);
+                    res.sendStatus(200);
+                }
+            }); // END QUERY
+        }
+    }); // END POOL
+})
+
+router.delete('/:p_id', function (req, res) {
+    let postId = req.params.p_id;
+    pool.connect(function (errorConnectingToDb, db, done) {
+        if (errorConnectingToDb) {
+            // There was an error and no connection was made
+            console.log('Error connecting', errorConnectingToDb);
+            res.sendStatus(500);
+        } else {
+            // We connected to the db!!!!! pool -1
+            //added ordering
+            let queryText = 'DELETE FROM "posts" WHERE "p_id" = $1';
+            db.query(queryText, [postId], function (errorMakingQuery, result) {
+                // We have received an error or result at this point
+                done(); // pool +1
+                if (errorMakingQuery) {
+                    console.log('Error making query', errorMakingQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(200);
                 }
             }); // END QUERY
         }
