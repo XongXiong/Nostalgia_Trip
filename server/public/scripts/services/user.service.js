@@ -4,6 +4,7 @@ myApp.service('UserService', function ($http, $location) {
   self.userObject = {};
   self.posts = { data: [] };
   self.isEditing = false;
+  self.returnedUser = {data:[]};
 
   self.getAllPosts = () => {
     $http.get('/post').then(function (response) {
@@ -12,6 +13,20 @@ myApp.service('UserService', function ($http, $location) {
     }).catch(function (err) {
       console.log('Could not get all posts');
     });
+  }
+
+  self.getSelectedUser = (username) => {
+    if (self.userObject.id !== undefined) {
+      $http.get('/post/user/' + username).then(function (response) {
+        console.log('Getting ' + username + '\'s data');
+        console.log(response.data);
+        self.returnedUser.data = response.data;
+        $location.path('/user')
+      })
+    } else {
+      alert('You must be logged in to view user!');
+      $location.path('/login');
+    }
   }
 
   self.getuser = () => {
@@ -111,6 +126,7 @@ myApp.service('UserService', function ($http, $location) {
     $http.delete('/post/' + postId).then(function (response) {
       console.log('Post Deleted');
       self.getAllPosts();
+      $location.path('/home')
     })
   }
 
@@ -121,7 +137,8 @@ myApp.service('UserService', function ($http, $location) {
       postname: newPost.postname,
       postdesc: newPost.postdesc,
       postpic: newPost.postpic,
-      id: self.userObject.id
+      id: self.userObject.id,
+      username: self.userObject.userName
     }
     if (postToAdd.postpic === '' || postToAdd == undefined) {
       postToAdd.postpic = 'http://hdwall.us/wallpaper/abstract_artistic_clocks_lacza_psychedelic_surreal_surrealism_time_desktop_2560x1440_hd-wallpaper-1331725.jpg';

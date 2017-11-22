@@ -1,12 +1,12 @@
-<div class="container" ng-controller="UserController as uc" layout="row">
+<div class="container" layout="row">
     <div flex="30"></div>
     <div style="border: 1px solid black; background-color: #333333; color: white; height:300px;" flex="40" layout-margin="" layout="row"
         layout-align="center">
         <div layout="row" layout-align="center">
-            <div ng-if="uc.userService.userObject.id === undefined" layout-align="center">
+            <div layout-align="center">
                 <h1 class="lead" id="loginText">Login</h1>
                 <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h1>
-                <form ng-submit="lc.login(); uc.userService.toggleLog()" layout="column" layout-align="center" layout-wrap>
+                <form ng-submit="lc.login()" layout="column" layout-align="center" layout-wrap>
                     <label for="username">Username:</label>
                     <input type="text" ng-model="lc.user.username" style="margin-bottom:5px;" />
                     <label for="password">Password:</label>

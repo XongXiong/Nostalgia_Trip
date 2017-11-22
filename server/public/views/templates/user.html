@@ -1,50 +1,55 @@
-<div class="container">
+<div class="container" ng-controller="PostController as pc">
     <br>
-    <div layout-margin="">
-        <h1>Hoppii</h1>
+    <div layout-margin="" ng-controller="SelectUserController as sc">
+        <h1>{{pc.returnedUser.data[0].username}}
+        </h1>
         <md-button class="md-raised md-primary">Edit Info</md-button>
     </div>
     <div>
         <div layout="row" layout-margin="">
             <div flex="20" class="bioImgBox" layout="row" layout-align="center center">
-                <img ng-src="https://scontent.ffar1-1.fna.fbcdn.net/v/t31.0-8/22339631_1712728868739567_816282716283530685_o.jpg?oh=87710fa1aab4cc44d14779e5768437ff&oe=5AA81035"
+                <img ng-src="{{pc.returnedUser.data[0].profilepic}}"
                     class=" bioImg">
             </div>
             <div flex="3"></div>
             <div flex="80" class="bioInfo">
-                <div layout="column" layout-margin="">
+                <div layout="column" layout-margin="5px">
                     <div flex="10" class="">
-                        first name last name
+                         <h2>{{pc.returnedUser.data[0].firstname}} {{pc.returnedUser.data[0].lastname}}</h2>
                     </div>
-                    <div flex="90" class="bioBox">
-                        Bio
+                    <div flex="90" >
+                         {{pc.returnedUser.data[0].bio}}
                     </div>
                 </div>
             </div>
-        </div>
-        <div flex layout="row" layout-wrap ng-controller="PostController as pc">
-            <div flex="33" class="itemCard" ng-repeat="post in pc.posts">
+        </div><div flex layout="row" layout-wrap>
+            <div flex="33" class="itemCard" ng-repeat="post in pc.returnedUser.data">
                 <md-card>
-                    <img ng-src="https://scontent.ffar1-1.fna.fbcdn.net/v/t31.0-8/22555659_1727158440629943_40649371309642927_o.jpg?oh=1fad174b1e41ed40d5ec9f5d6eb8d3b6&oe=5A617EB0"
-                        class="md-card-image itemImg" alt="Washed Out">
+                    <img ng-src="{{post.postpic}}" class="md-card-image itemImg">
                     <md-card-title align="center">
                         <md-card-title-text>
-                            <span class="md-headline">{{post.name}}</span>
+                            <div class="md-headline">{{post.postname}}</div>
+                            <div>Posted by:
+                                <a href="#/user" ng-click="pc.getUserInfo(post.username)" style="font-size:14px">{{post.username}}</a>
+                            </div>
                         </md-card-title-text>
                     </md-card-title>
-                    <md-card-actions layout="column" layout-align="start center">
-                        <md-button class="material-icons">arrow_upward</md-button>
-                        <p>Votes: {{post.votes}}</p>
-                        <md-button class="material-icons">arrow_downward</md-button>
-                    </md-card-actions>
                     <md-card-content>
                         <h3>Description:</h3>
                         <p>
-                            {{post.desc}}
+                            {{post.postdesc}}
                         </p>
-                        <h3>Learn more:</h3>
-                        <md-button ng-click="pc.search(post.name)" class="md-raised">Click to learn more about this</md-button>
                     </md-card-content>
+                    <md-card-actions layout-margin="">
+                        <h4>Relatable?</h4>
+                        <md-button class="material-icons md-18 md-raised" ng-click="pc.userService.postVote('up', post.p_id, post.votes)" style="margin: 0px 0px 0px 8px;">thumb_up</md-button>
+                        <md-button class="material-icons md-18 md-raised" ng-click="pc.userService.postVote('down', post.p_id, post.votes)">thumb_down</md-button>
+                        <p>{{post.votes}} people can relate to this.</p>
+                        <md-button class="material-icons md-18 md-raised md-primary" ng-click="pc.userService.editPost(post)" ng-if="post.username === pc.userService.userObject.userName">edit</md-button>
+                        <md-button class="material-icons md-18 md-raised md-warn" ng-click="pc.userService.deletePost(post.p_id)" ng-if="post.username === pc.userService.userObject.userName">delete</md-button>
+                        <br>
+                        <md-button class="md-raised" ng-click="pc.search(post.postname)" style="margin-top:5px; background-color: #333333; color:white; font-weight:bold;">learn more about this</md-button>
+                    </md-card-actions>
                 </md-card>
             </div>
         </div>

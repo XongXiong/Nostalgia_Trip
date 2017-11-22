@@ -4,6 +4,7 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
     vm.userService = UserService
 
     vm.posts = UserService.posts;
+    vm.returnedUser = UserService.returnedUser;
 
     vm.postToAdd = {
         postname: '',
@@ -23,14 +24,11 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
 
     vm.addPost = () => {
         UserService.addPost(vm.postToAdd);
-            vm.postToAdd = null;
+        vm.postToAdd = null;
     }
 
-    vm.getSelectedUser = (username) => {
-        $http.get('/post/user/' + username).then(function (response) {
-            console.log('Getting ' + username + '\'s data');
-            console.log(response.data);
-        })
+    vm.getUserInfo = (username) => {
+        UserService.getSelectedUser(username);
     }
 
     UserService.getAllPosts();

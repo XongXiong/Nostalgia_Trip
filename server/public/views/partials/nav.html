@@ -8,8 +8,8 @@
         <a href="#/info">Info Page</a>
       </li>
       <div ng-if="uc.userService.userObject.id !== undefined">
-        <li>
-          <a href="#/user">My Account</a>
+        <li ng-controller="PostController as pc">
+          <a href="#/user" ng-click="pc.getUserInfo(pc.userService.userObject.userName)">My Account</a>
         </li>
         <li>
           <a href="#/add">Add Post</a>

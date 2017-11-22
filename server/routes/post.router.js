@@ -99,7 +99,7 @@ router.get('/user/:username', function (req, res) {
         } else {
             // We connected to the db!!!!! pool -1
             //added ordering
-            let queryText = 'SELECT p.postname, p.postdesc, p.postpic, p.votes, u.firstname, u.lastname, u.bio, u.profilepic, u.username FROM "users" u JOIN "posts" p ON u."username" = p."username" WHERE u."username" = $1 ORDER BY "p_id";';
+            let queryText = 'SELECT p.postname, p.postdesc, p.postpic, p.votes, u.firstname, u.lastname, u.bio, u.profilepic, u.username, p.p_id FROM "users" u JOIN "posts" p ON u."username" = p."username" WHERE u."username" = $1 ORDER BY "p_id";';
             db.query(queryText, [username], function (errorMakingQuery, result) {
                 // We have received an error or result at this point
                 done(); // pool +1
