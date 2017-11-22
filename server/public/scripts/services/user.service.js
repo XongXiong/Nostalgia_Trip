@@ -53,7 +53,7 @@ myApp.service('UserService', function ($http, $location) {
       console.log('UserService -- logout');
       $http.get('/user/logout').then(function (response) {
         console.log('UserService -- logout -- logged out');
-        self.isEditing = !self.isEditing;
+        self.isEditing = false;
         $location.path("/home");
         self.userObject = {};
       });

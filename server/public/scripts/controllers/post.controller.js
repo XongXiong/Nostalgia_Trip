@@ -11,6 +11,17 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
         postdesc: '',
         postpic: ''
     }
+    
+    let fsClient = filestack.init('AnXpCAZX8QyrKizqSb76Rz');
+    vm.openPicker = () => {
+        fsClient.pick({
+            fromSources: ["local_file_system", "url", "imagesearch", "facebook", "instagram", "dropbox"]
+        }).then(function (response) {
+            // declare this function to handle response
+            // handleFilestack(response);
+            vm.postToAdd.postpic = response.filesUploaded[0].url;
+        });
+    }
 
     UserService.getuser();
 

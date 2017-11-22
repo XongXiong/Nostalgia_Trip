@@ -22,13 +22,15 @@
 
                     <div>
                         <label for="postpic">
-                            <h2>Picture URL:</h2>
+                            <h2>Attach a photo:</h2>
                         </label>
-                        <input type="text" class="addInput" ng-model="pc.postToAdd.postpic" />
+                        <input type="text" class="addInput" ng-model="pc.postToAdd.postpic" ng-value="pc.postToAdd.postpic" ng-change=""/>
+                        <md-button ng-click="pc.openPicker()" class="md-raised" style="margin-left:0px;">Upload Picture</md-button>
+                        <h4 style="margin:0px;">Image URL not loading? <a ng-click="">Click here</a></h4>
                     </div>
                     <br>
                     <div>
-                        <input class="btn btn-default" type="submit" name="submit" value="Add post" />
+                        <md-button class="md-raised" style="margin-left:0px;" type="submit" name="submit">Add post</md-button>
                     </div>
                 </form>
             </div>

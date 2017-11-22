@@ -21,8 +21,8 @@ router.post('/add', function (req, res) {
             console.log('Error connecting to DB');
             res.sendStatus(500);
         } else {
-            var queryText = 'INSERT INTO posts ("postname", "postdesc", "postpic", "id") VALUES ($1, $2, $3, $4);';
-            db.query(queryText, [post.postname, post.postdesc, post.postpic, post.id], function (errorQueryingDb, result) {
+            var queryText = 'INSERT INTO posts ("postname", "postdesc", "postpic", "id", "username") VALUES ($1, $2, $3, $4, $5);';
+            db.query(queryText, [post.postname, post.postdesc, post.postpic, post.id, post.username], function (errorQueryingDb, result) {
                 done();
                 if (errorQueryingDb) {
                     console.log('Error in POST route querying database with');
