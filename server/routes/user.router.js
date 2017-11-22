@@ -29,5 +29,4 @@ router.get('/logout', function (req, res) {
   res.sendStatus(200);
 });
 
-
 module.exports = router;

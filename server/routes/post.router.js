@@ -88,6 +88,31 @@ router.get('/', function (req, res) {
     }); // END POOL
 })
 
+router.get('/user/:username', function (req, res) {
+    let username = req.params.username;
+    console.log(username);
+    pool.connect(function (errorConnectingToDb, db, done) {
+        if (errorConnectingToDb) {
+            // There was an error and no connection was made
+            console.log('Error connecting', errorConnectingToDb);
+            res.sendStatus(500);
+        } else {
+            // We connected to the db!!!!! pool -1
+            //added ordering
+            let queryText = 'SELECT p.postname, p.postdesc, p.postpic, p.votes, u.firstname, u.lastname, u.bio, u.profilepic, u.username FROM "users" u JOIN "posts" p ON u."username" = p."username" WHERE u."username" = $1 ORDER BY "p_id";';
+            db.query(queryText, [username], function (errorMakingQuery, result) {
+                // We have received an error or result at this point
+                done(); // pool +1
+                if (errorMakingQuery) {
+                    console.log('Error making query', errorMakingQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                }
+            }); // END QUERY
+        }
+    }); // END POOL
+})
 
 router.put('/edit/:p_id', function (req, res) {
     let postId = req.params.p_id;

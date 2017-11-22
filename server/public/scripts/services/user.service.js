@@ -32,7 +32,7 @@ myApp.service('UserService', function ($http, $location) {
       console.log('UserService -- getuser -- failure: ', response);
       $location.path("/home");
     });
-  },
+  }
 
     self.logout = () => {
       console.log('UserService -- logout');

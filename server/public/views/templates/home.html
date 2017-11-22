@@ -8,7 +8,9 @@
             <md-card-title align="center">
                 <md-card-title-text>
                     <div class="md-headline">{{post.postname}}</div>
-                    <div>Posted by: <a href="/users/{{post.username}}" style="color:black;font-size:14px">{{post.username}}</a></div>
+                    <div>Posted by:
+                        <a href="#/user" ng-click="pc.getSelectedUser(post.username)" style="color:black;font-size:14px">{{post.username}}</a>
+                    </div>
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
@@ -25,7 +27,7 @@
                 <md-button class="material-icons md-18 md-raised md-primary" ng-click="pc.userService.editPost(post)" ng-if="post.id === pc.userService.userObject.id">edit</md-button>
                 <md-button class="material-icons md-18 md-raised md-warn" ng-click="pc.userService.deletePost(post.p_id)" ng-if="post.id === pc.userService.userObject.id">delete</md-button>
                 <br>
-                <md-button class="md-raised" ng-click="pc.search(post.name)" style="margin-top:5px; background-color: #333333; color:white; font-weight:bold;">learn more about this</md-button>
+                <md-button class="md-raised" ng-click="pc.search(post.postname)" style="margin-top:5px; background-color: #333333; color:white; font-weight:bold;">learn more about this</md-button>
             </md-card-actions>
         </md-card>
     </div>

@@ -26,6 +26,13 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
             vm.postToAdd = null;
     }
 
+    vm.getSelectedUser = (username) => {
+        $http.get('/post/user/' + username).then(function (response) {
+            console.log('Getting ' + username + '\'s data');
+            console.log(response.data);
+        })
+    }
+
     UserService.getAllPosts();
 
     vm.showPrompt = function (ev, post) {

@@ -1,29 +1,21 @@
 <div class="container" ng-controller="UserController as uc" layout="row">
     <div flex="30"></div>
-    <div id="loginSect" flex="40" layout-margin="">
+    <div style="border: 1px solid black; background-color: #333333; color: white; height:300px;" flex="40" layout-margin="" layout="row"
+        layout-align="center">
         <div layout="row" layout-align="center">
-            <div ng-if="uc.userService.userObject.id === undefined">
-                <h1 class="lead" style="text-align:center">Login</h1>
-                <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
-                    <form ng-submit="lc.login(); uc.userService.toggleLog()">
-                        <div>
-                            <label for="username">Username:</label>
-                            <br>
-                            <input type="text" ng-model="lc.user.username" style="margin-bottom:5px;" />
-                        </div>
-                        <div>
-                            <label for="password">Password:</label>
-                            <br>
-                            <input type="password" ng-model="lc.user.password" style="margin-bottom:5px;" />
-                        </div>
-                        <div>
-                            <input class="btn btn-default" type="submit" name="submit" value="Log In" />
-                            <a href="#register" id="register">Register</a>
-                        </div>
-                    </form>
-            </div>
-            <div ng-if="uc.userService.userObject.id !== undefined">
-                <md-button class="md-warn md-raised" ng-click="uc.userService.logout(); uc.userService.toggleLog()">Log Out</md-button>
+            <div ng-if="uc.userService.userObject.id === undefined" layout-align="center">
+                <h1 class="lead" id="loginText">Login</h1>
+                <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h1>
+                <form ng-submit="lc.login(); uc.userService.toggleLog()" layout="column" layout-align="center" layout-wrap>
+                    <label for="username">Username:</label>
+                    <input type="text" ng-model="lc.user.username" style="margin-bottom:5px;" />
+                    <label for="password">Password:</label>
+                    <input type="password" ng-model="lc.user.password" style="margin-bottom:5px;" />
+                    <div layout="row" layout-align="center" layout-margin="">
+                        <md-button type="submit" class="md-raised" name="submit">Log In</md-button>
+                        <a href="#register" id="register">Register</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
