@@ -100,7 +100,7 @@ myApp.service('UserService', function ($http, $location) {
 
   self.editPost = (post) => {
     console.log(post);
-    self.isEditing = !self.isEditing;
+    self.isEditing = true;
     $location.path('/add')
     self.editedPost = {
       postname: post.postname,
@@ -116,7 +116,7 @@ myApp.service('UserService', function ($http, $location) {
   self.addEditedPost = () => {
     console.log(self.editedPost);
     $http.put('/post/edit/' + self.editedPost.postid, self.editedPost).then(function (response) {
-      self.isEditing = !self.isEditing;
+      self.isEditing = false;
       $location.path('/home');
       self.getAllPosts();
     })
@@ -145,7 +145,7 @@ myApp.service('UserService', function ($http, $location) {
     }
     console.log(postToAdd);
     $http.post('/post/add', postToAdd).then(function (response) {
-      console.log(response);
+      $location.path('/home')
     })
   }
 });

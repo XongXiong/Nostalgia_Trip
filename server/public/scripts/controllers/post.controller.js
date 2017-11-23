@@ -19,7 +19,12 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
         }).then(function (response) {
             // declare this function to handle response
             // handleFilestack(response);
-            vm.postToAdd.postpic = response.filesUploaded[0].url;
+            if (UserService.isEditing === false) {
+                vm.postToAdd.postpic = response.filesUploaded[0].url;
+            } else {
+                UserService.editedPost.postpic = response.filesUploaded[0].url;
+                console.log(UserService.editedPost);
+            }
         });
     }
 
@@ -36,6 +41,7 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
     vm.addPost = () => {
         UserService.addPost(vm.postToAdd);
         vm.postToAdd = null;
+
     }
 
     vm.getUserInfo = (username) => {
