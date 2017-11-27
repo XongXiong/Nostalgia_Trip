@@ -13,18 +13,22 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
     }
     
     let fsClient = filestack.init('AnXpCAZX8QyrKizqSb76Rz');
-    vm.openPicker = () => {
+    vm.openPicker = (status) => {
         fsClient.pick({
             fromSources: ["local_file_system", "url", "imagesearch", "facebook", "instagram", "dropbox"]
         }).then(function (response) {
             // declare this function to handle response
             // handleFilestack(response);
+            if (status === 'post') {
             if (UserService.isEditing === false) {
                 vm.postToAdd.postpic = response.filesUploaded[0].url;
             } else {
                 UserService.editedPost.postpic = response.filesUploaded[0].url;
                 console.log(UserService.editedPost);
-            }
+            };
+        } else if(status === 'user') {
+            UserService.userToEdit.profilepic = response.filesUploaded[0].url;
+        }
         });
     }
 

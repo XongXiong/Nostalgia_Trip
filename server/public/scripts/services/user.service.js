@@ -20,8 +20,15 @@ myApp.service('UserService', function ($http, $location) {
       $http.get('/post/user/' + username).then(function (response) {
         console.log('Getting ' + username + '\'s data');
         console.log(response.data);
+        if (response.data.length === 0){
+          $http.get('/user/' + username).then(function(response) {
+            console.log(response.data);
+            self.returnedUser.data = response.data;
+          })
+        } else {
         self.returnedUser.data = response.data;
-        $location.path('/user')
+      }
+      $location.path('/user')
       })
     } else {
       alert('You must be logged in to view user!');

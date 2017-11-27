@@ -24,7 +24,8 @@
                     </div>
                 </div>
             </div>
-        </div><div flex layout="row" layout-wrap>
+        </div>
+        <div ng-if="pc.returnedUser.data[0].postname !== undefined" flex layout="row" layout-wrap>
             <div flex="33" class="itemCard" ng-repeat="post in pc.returnedUser.data">
                 <md-card>
                     <img ng-src="{{post.postpic}}" class="md-card-image itemImg">

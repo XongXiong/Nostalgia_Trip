@@ -1,34 +1,5 @@
-<!-- <div class="navbar" ng-controller="UserController as uc">
-  <div class="container">
-    <ul>
-      <li>
-        <a href="#/home">Home</a>
-      </li>
-      <li>
-        <a href="#/info">Info Page</a>
-      </li>
-      <div ng-if="uc.userService.userObject.id !== undefined">
-        <li ng-controller="PostController as pc">
-          <a href="#/user" ng-click="pc.getUserInfo(pc.userService.userObject.userName)">My Account</a>
-        </li>
-        <li>
-          <a href="#/add">Add Post</a>
-        </li>
-      </div>
-      <li>
-        <md-button class="md-raised" ng-if="uc.userService.userObject.id === undefined" href="#/login">Log In</md-button>
-      </li>
-      <li>
-        <md-button class="md-raised" ng-if="uc.userService.userObject.id !== undefined" ng-click="uc.userService.logout()">Log Out</md-button>
-      </li>
-    </ul>
-    <div>
-    </div>
-  </div>
-</div> -->
-
 <div ng-controller="UserController as uc" ng-cloak>
-  <md-content class="md-padding" style="background-color:#111;" ng-controller="PostController as pc">
+  <md-content style="background-color:#111;" ng-controller="PostController as pc">
     <md-nav-bar nav-bar-aria-label="navigation links">
       <md-nav-item md-nav-href="#/home" name="home">
         Home
@@ -49,6 +20,9 @@
       </div>
       <md-nav-item ng-if="uc.userService.userObject.id == undefined" md-nav-href="#/login" name="login">
       Log In
+      </md-nav-item>
+      <md-nav-item ng-if="uc.userService.userObject.id == undefined" md-nav-href="#/register" name="register">
+      Register
       </md-nav-item>
     </md-nav-bar>
   </md-content>

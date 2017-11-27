@@ -55,6 +55,32 @@ router.put('/edit/:username', function(req, res) {
       }); // END QUERY
     }
   }); // END POOL
+});
+
+router.get('/:username', function (req, res) {
+  let username = req.params.username;
+  console.log(username);
+  pool.connect(function (errorConnectingToDb, db, done) {
+    if (errorConnectingToDb) {
+      // There was an error and no connection was made
+      console.log('Error connecting', errorConnectingToDb);
+      res.sendStatus(500);
+    } else {
+      // We connected to the db!!!!! pool -1
+      //added ordering
+      let queryText = 'SELECT * FROM "users" u WHERE u."username" = $1';
+      db.query(queryText, [username], function (errorMakingQuery, result) {
+        // We have received an error or result at this point
+        done(); // pool +1
+        if (errorMakingQuery) {
+          console.log('Error making query', errorMakingQuery);
+          res.sendStatus(500);
+        } else {
+          res.send(result.rows);
+        }
+      }); // END QUERY
+    }
+  }); // END POOL
 })
 
 module.exports = router;
