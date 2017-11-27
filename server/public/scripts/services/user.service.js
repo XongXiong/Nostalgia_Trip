@@ -126,7 +126,7 @@ myApp.service('UserService', function ($http, $location) {
     $http.delete('/post/' + postId).then(function (response) {
       console.log('Post Deleted');
       self.getAllPosts();
-      $location.path('/home')
+      $location.path('/home');
     })
   }
 

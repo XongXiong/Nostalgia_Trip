@@ -12,8 +12,11 @@
                     <label for="password">Password:</label>
                     <input type="password" ng-model="lc.user.password" style="margin-bottom:5px;" />
                     <div layout="row" layout-align="center" layout-margin="">
-                        <md-button type="submit" class="md-raised" name="submit">Log In</md-button>
-                        <a href="#register" id="register">Register</a>
+                        <md-button type="submit" class="md-raised" name="submit" style="font-weight:bold;">Log In</md-button>
+                        <div layout="column" layout-align="center center">
+                            <p>Don't have an account?</p>
+                        <a href="#register" id="register">Click here to register</a>
+                        </div>
                     </div>
                 </form>
             </div>

@@ -2,8 +2,10 @@ body,
 html {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: Courier New;
   font-size: 14px;
+  background-color: rgb(180, 180, 180);
+  font-weight: bold;
 }
 
 .instructions .container h1 {
@@ -13,7 +15,7 @@ html {
 
 .instructions {
   background-color: #333333;
-  color: #DDDDDD;
+  color: rgb(180, 180, 180);
   padding: 15px;
 }
 
@@ -83,7 +85,7 @@ li a:hover {
 }
 
 .homeHead {
-  width: 215px;
+  width: 600px;
   position: relative;
 }
 
@@ -97,29 +99,6 @@ li a:hover {
   /* edit: fixes overlap error in IE7/8, 
      make sure you have an empty gif 
   background-image: url('empty.gif');*/
-}
-
-.navSide {
-  width: 30px;
-  height: 30px;
-  background-color: rgb(117, 117, 117);
-}
-
-a {
-  font-size: 30px;
-  color: white;
-}
-
-.firstBox {
-  background-color: red
-}
-
-.secondBox {
-  background-color: blue
-}
-
-.thirdBox {
-  background-color: blueviolet
 }
 
 .bioImgBox,
@@ -145,11 +124,6 @@ a {
   font-size: 16px;
 }
 
-#register {
-  color: black;
-  font-size: 14px;
-}
-
 .addInput {
   height: 25px;
   width: 80%;
@@ -171,7 +145,7 @@ a {
 
 a {
   cursor: pointer;
-  color: blue;
+  color: white;
   font-size: 14px;
   text-decoration: underline;
 }
@@ -179,11 +153,13 @@ a {
 md-nav-bar.md-default-theme .md-button._md-nav-button.md-unselected,
 md-nav-bar .md-button._md-nav-button.md-unselected {
   color: rgb(180, 180, 180);
+  font-weight: bold;
 }
 
 .md-button.md-default-theme.md-accent,
 .md-button.md-accent {
   color: white;
+  font-weight: bold;
 }
 
 md-nav-bar.md-default-theme md-nav-ink-bar,
@@ -200,4 +176,13 @@ md-nav-bar md-nav-ink-bar {
   background-origin: initial;
   background-clip: initial;
   background-color: white;
+}
+
+.bioItems {
+  margin: 0px 0px 3px 0px;
+}
+
+md-card {
+  background-color: #222;
+  color: rgb(180, 180, 180);
 }
