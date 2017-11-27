@@ -148,4 +148,35 @@ myApp.service('UserService', function ($http, $location) {
       $location.path('/home')
     })
   }
+
+  self.userToEdit = {
+    username: '',
+    firstname: '',
+    lastname: '',
+    bio: '',
+    profilepic: ''
+  }
+
+  self.editUser = (loggedUser) => {
+    $location.path('/editUser');
+    self.userToEdit = {
+      username: loggedUser.username,
+      firstname: loggedUser.firstname,
+      lastname: loggedUser.lastname,
+      bio: loggedUser.bio,
+      profilepic: loggedUser.profilepic
+    }
+    console.log(self.userToEdit);
+    return self.userToEdit;
+  }
+
+  self.addEditedUser = () => {
+    console.log(self.userToEdit);
+    $http.put('/user/edit/' + self.userToEdit.username, self.userToEdit).then(function(response) {
+      $location.path('/home');
+    }).catch(function(err) {
+      console.log(err);
+      console.log('not working');
+    })
+  }
 });

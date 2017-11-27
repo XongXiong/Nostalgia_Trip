@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+let pool = require('../modules/pool.js');
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function (req, res) {
@@ -28,5 +29,32 @@ router.get('/logout', function (req, res) {
   req.logOut();
   res.sendStatus(200);
 });
+
+router.put('/edit/:username', function(req, res) {
+  let username = req.params.username;
+  let user = req.body;
+  console.log(user);
+  pool.connect(function (errorConnectingToDb, db, done) {
+    if (errorConnectingToDb) {
+      // There was an error and no connection was made
+      console.log('Error connecting', errorConnectingToDb);
+      res.sendStatus(500);
+    } else {
+      // We connected to the db!!!!! pool -1
+      //added ordering
+      let queryText = 'UPDATE "users" SET "firstname" = $1, "lastname" = $2, "profilepic" = $3, "bio" = $4 WHERE "username" = $5;';
+      db.query(queryText, [user.firstname, user.lastname, user.profilepic, user.bio, username], function (errorMakingQuery, result) {
+        // We have received an error or result at this point
+        done(); // pool +1
+        if (errorMakingQuery) {
+          console.log('Error making query', errorMakingQuery);
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(200);
+        }
+      }); // END QUERY
+    }
+  }); // END POOL
+})
 
 module.exports = router;

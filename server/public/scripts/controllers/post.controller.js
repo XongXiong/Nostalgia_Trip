@@ -45,6 +45,7 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
     }
 
     vm.getUserInfo = (username) => {
+        console.log('jeu');
         UserService.getSelectedUser(username);
     }
 

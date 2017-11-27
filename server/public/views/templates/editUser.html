@@ -1,0 +1,54 @@
+<div class="container" ng-controller="PostController as pc">
+    <div flex="25"></div>
+    <div flex="50" layout-margin="">
+        <div layout="row" layout-align="center" style="border: 1px solid black; background-color: #333333; color: white;">
+    
+            <div layout="column" layout-margin="" ng-if="pc.userService.userObject.userName === pc.userService.userToEdit.username" style="width:100%">
+                <form ng-submit="pc.userService.addEditedUser(pc.userService.userToEdit)">
+                    <div>
+                        <label for="firstname">
+                            <h2>First Name:
+                                <h2>
+                        </label>
+                        <input type="text" class="addInput" ng-value="pc.userService.userToEdit.firstname"ng-model="pc.userService.userToEdit.firstname"/>
+                    </div>
+    
+                    <div>
+                        <label for="lastname" />
+                        <h2>Last Name:</h2>
+                        </label>
+                        <input type="text" ng-value="pc.userService.userToEdit.lastname"ng-model="pc.userService.userToEdit.lastname" class="addInput" />
+                    </div>
+    
+                    <div>
+                        <label for="bio">
+                            <h2>Bio:</h2>
+                        </label>
+                        <input type="text" class="addInput" ng-value="pc.userService.userToEdit.bio" ng-model="pc.userService.userToEdit.bio" />
+                    </div>
+                    <div>
+                        <label for="profilepic">
+                            <h2>Profile Picture:</h2>
+                        </label>
+                        <input type="text" class="addInput" 
+                         ng-value="pc.userService.userToEdit.profilepic"ng-model="pc.userService.userToEdit.profilepic" />
+                        <md-button ng-click="pc.openPicker()" class="md-raised" style="margin-left:0px;">Upload Picture</md-button>
+                        <h4 style="margin:0px;">Image URL not loading?
+                            <a ng-click="">Click here</a>
+                        </h4>
+                    </div>
+                    <br>
+                    <div>
+                        <md-button class="md-raised" style="margin-left:0px;" type="submit" name="submit">Edit user</md-button>
+                    </div>
+                </form>
+            </div>
+            <div layout="column" layout-margin="" ng-if="pc.userService.userObject.userName !== pc.userService.userToEdit.username" style="width:100%">
+                <h1>
+                    You are not authorized to change this user's information.
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div flex="25"></div>
+</div>

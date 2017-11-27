@@ -39,6 +39,15 @@ myApp.config(function ($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/info.html',
       controller: 'InfoController',
     })
+    .when('/editUser', {
+      templateUrl: '/views/templates/editUser.html',
+      controller: 'UserController as uc',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });

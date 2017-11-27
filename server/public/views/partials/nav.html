@@ -1,4 +1,4 @@
-<div class="navbar" ng-controller="UserController as uc">
+<!-- <div class="navbar" ng-controller="UserController as uc">
   <div class="container">
     <ul>
       <li>
@@ -23,7 +23,33 @@
       </li>
     </ul>
     <div>
-      <!-- fsdfsd -->
     </div>
   </div>
+</div> -->
+
+<div ng-controller="UserController as uc" ng-cloak>
+  <md-content class="md-padding" style="background-color:#222;" ng-controller="PostController as pc">
+    <md-nav-bar nav-bar-aria-label="navigation links">
+      <md-nav-item md-nav-href="#/home" name="home">
+        Home
+      </md-nav-item>
+      <md-nav-item md-nav-href="#/info" name="info">
+        About 
+      </md-nav-item>
+      <div ng-if="uc.userService.userObject.id !== undefined">
+      <md-nav-item md-nav-href="#/user" ng-click="pc.getUserInfo(pc.userService.userObject.userName)" name="user">
+        My Account
+      </md-nav-item>
+      <md-nav-item md-nav-href="#/add" name="add">
+        Add Post
+      </md-nav-item>
+      <md-nav-item md-nav-click="uc.userService.logout()" name="logout">
+        Log Out
+      </md-nav-item>
+      </div>
+      <md-nav-item ng-if="uc.userService.userObject.id == undefined" md-nav-href="#/login" name="login">
+      Log In
+      </md-nav-item>
+    </md-nav-bar>
+  </md-content>
 </div>
