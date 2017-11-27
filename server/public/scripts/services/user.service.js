@@ -86,7 +86,7 @@ myApp.service('UserService', function ($http, $location) {
         console.log('Vote not working');
       }
     } else {
-      alert('You must be logged in to relate!');
+      alert('You must be logged in to like/dislike!');
       $location.path('/login');
     }
   }

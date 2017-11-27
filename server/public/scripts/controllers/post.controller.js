@@ -45,29 +45,9 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
     }
 
     vm.getUserInfo = (username) => {
-        console.log('jeu');
         UserService.getSelectedUser(username);
     }
 
     UserService.getAllPosts();
-
-    vm.showPrompt = function (ev, post) {
-        // Appending dialog to document.body to cover sidenav in docs app
-        var confirm = $mdDialog.prompt()
-            .title('What would you like to edit?')
-            .initialValue({ post })
-            .targetEvent(ev)
-            .ok('Okay!')
-            .cancel('I\'m a cat person');
-        console.log(post);
-        console.log(confirm);
-        $mdDialog.show(confirm).then(function (result) {
-            console.log(result);
-            vm.status = 'You decided to name your dog ' + result + '.';
-        }, function () {
-            vm.status = 'You didn\'t name your dog.';
-        });
-    };
-
 
 });
