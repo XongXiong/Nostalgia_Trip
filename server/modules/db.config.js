@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
 // Mongo Connection //
-var mongoURI = '';
+let mongoURI = '';
 // process.env.MONGODB_URI will only be defined if you
 // are running on Heroku
 if (process.env.MONGODB_URI != undefined) {

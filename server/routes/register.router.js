@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var path = require('path');
-var pool = require('../modules/pool.js');
-var encryptLib = require('../modules/encryption');
+let express = require('express');
+let router = express.Router();
+let path = require('path');
+let pool = require('../modules/pool.js');
+let encryptLib = require('../modules/encryption');
 
 // Handles request for HTML file
 router.get('/', function (req, res, next) {
@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 // Handles POST request with new user data
 router.post('/', function (req, res, next) {
 
-  var saveUser = {
+  let saveUser = {
     username: req.body.username,
     password: encryptLib.encryptPassword(req.body.password),
     firstName: req.body.firstName,

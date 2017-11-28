@@ -1,6 +1,6 @@
 myApp.service('UserService', function ($http, $mdDialog, $location) {
   console.log('UserService Loaded');
-  var self = this;
+  let self = this;
   self.userObject = {};
   self.posts = { data: [] };
   self.isEditing = false;
@@ -25,7 +25,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
   }
 
   self.showAlert = () => {
-    var confirm = $mdDialog.confirm()
+    let confirm = $mdDialog.confirm()
       .clickOutsideToClose(true)
       .title('You are not logged in')
       .textContent('Please log in before proceeding')
@@ -90,7 +90,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
     }
 
   self.postVote = (upDown, postId, votes) => {
-    var postVotes = {
+    let postVotes = {
       voteCount: votes
     }
     if (self.userObject.id !== undefined) {
@@ -161,7 +161,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
   self.addPost = (newPost) => {
     console.log(self.userObject);
     console.log(newPost);
-    var postToAdd = {
+    let postToAdd = {
       postname: newPost.postname,
       postdesc: newPost.postdesc,
       postpic: newPost.postpic,

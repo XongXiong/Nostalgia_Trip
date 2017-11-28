@@ -1,7 +1,7 @@
-var passport = require('passport');
-var localStrategy = require('passport-local').Strategy;
-var encryptLib = require('../modules/encryption');
-var pool = require('../modules/pool.js');
+let passport = require('passport');
+let localStrategy = require('passport-local').Strategy;
+let encryptLib = require('../modules/encryption');
+let pool = require('../modules/pool.js');
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -17,7 +17,7 @@ passport.deserializeUser(function(id, done) {
       done(err);
     }
 
-    var user = {};
+    let user = {};
 
     client.query("SELECT * FROM users WHERE id = $1", [id], function(err, result) {
 
@@ -55,7 +55,7 @@ passport.use('local', new localStrategy({
         // assumes the username will be unique, thus returning 1 or 0 results
         client.query("SELECT * FROM users WHERE username = $1", [username],
           function(err, result) {
-            var user = {};
+            let user = {};
 
             console.log('here');
 

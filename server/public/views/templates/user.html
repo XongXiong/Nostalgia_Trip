@@ -28,7 +28,7 @@
         <div ng-if="pc.returnedUser.data[0].postname !== undefined" flex layout="row" layout-wrap>
             <div flex="33" class="itemCard" ng-repeat="post in pc.returnedUser.data">
                 <md-card>
-                    <img ng-src="{{post.postpic}}" class="md-card-image itemImg">
+                    <img ng-src="{{post.postpic}}" class="md-card-image">
                     <md-card-title align="center">
                         <md-card-title-text>
                             <div class="md-headline" style="font-weight:bold;">{{post.postname}}</div>

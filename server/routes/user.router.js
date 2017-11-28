@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var pool = require('../modules/pool.js');
+let express = require('express');
+let router = express.Router();
+let pool = require('../modules/pool.js');
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function (req, res) {
@@ -9,7 +9,7 @@ router.get('/', function (req, res) {
   if (req.isAuthenticated()) {
     // send back user object from database
     console.log('logged in', req.user);
-    var userInfo = {
+    let userInfo = {
       username: req.user.username,
       id: req.user.id
     };
@@ -31,8 +31,8 @@ router.get('/logout', function (req, res) {
 });
 
 router.put('/edit/:username', function(req, res) {
-  var username = req.params.username;
-  var user = req.body;
+  let username = req.params.username;
+  let user = req.body;
   console.log(user);
   pool.connect(function (errorConnectingToDb, db, done) {
     if (errorConnectingToDb) {
@@ -42,7 +42,7 @@ router.put('/edit/:username', function(req, res) {
     } else {
       // We connected to the db!!!!! pool -1
       //added ordering
-      var queryText = 'UPDATE "users" SET "firstname" = $1, "lastname" = $2, "profilepic" = $3, "bio" = $4 WHERE "username" = $5;';
+      let queryText = 'UPDATE "users" SET "firstname" = $1, "lastname" = $2, "profilepic" = $3, "bio" = $4 WHERE "username" = $5;';
       db.query(queryText, [user.firstname, user.lastname, user.profilepic, user.bio, username], function (errorMakingQuery, result) {
         // We have received an error or result at this point
         done(); // pool +1
@@ -58,7 +58,7 @@ router.put('/edit/:username', function(req, res) {
 });
 
 router.get('/:username', function (req, res) {
-  var username = req.params.username;
+  let username = req.params.username;
   console.log(username);
   pool.connect(function (errorConnectingToDb, db, done) {
     if (errorConnectingToDb) {
@@ -68,7 +68,7 @@ router.get('/:username', function (req, res) {
     } else {
       // We connected to the db!!!!! pool -1
       //added ordering
-      var queryText = 'SELECT * FROM "users" u WHERE u."username" = $1';
+      let queryText = 'SELECT * FROM "users" u WHERE u."username" = $1';
       db.query(queryText, [username], function (errorMakingQuery, result) {
         // We have received an error or result at this point
         done(); // pool +1
