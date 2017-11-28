@@ -1,4 +1,4 @@
-myApp.controller('LoginController', function ($http, $location, UserService) {
+myApp.controller('LoginController', function ($http, $location, $route, UserService, $mdDialog) {
   console.log('LoginController created');
   var vm = this;
   vm.user = {
@@ -20,7 +20,9 @@ myApp.controller('LoginController', function ($http, $location, UserService) {
         if (response.data.username) {
           console.log('LoginController -- login -- success: ', response.data);
           // location works with SPA (ng-route)
-          $location.path('/home'); // http://localhost:5000/#/home
+          // $location.path('/home'); // http://localhost:5000/#/home
+          $route.reload();
+          $mdDialog.cancel();
         } else {
           console.log('LoginController -- login -- failure: ', response);
           vm.message = "Incorrect username or password. Please try again";
@@ -42,7 +44,8 @@ myApp.controller('LoginController', function ($http, $location, UserService) {
       console.log('LoginController -- registerUser -- sending to server...', vm.user);
       $http.post('/register', vm.user).then(function (response) {
         console.log('LoginController -- registerUser -- success');
-        $location.path('/login');
+        $mdDialog.cancel();
+        UserService.showLogin();
       }).catch(function (response) {
         console.log('LoginController -- registerUser -- error');
         vm.message = "Please try again."

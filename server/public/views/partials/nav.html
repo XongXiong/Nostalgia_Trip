@@ -7,21 +7,19 @@
       <md-nav-item md-nav-href="#/info" name="info">
         About 
       </md-nav-item>
-      <div ng-if="uc.userService.userObject.id !== undefined">
-      <md-nav-item md-nav-href="#/user" ng-click="pc.getUserInfo(pc.userService.userObject.userName)" name="user">
+      <md-nav-item md-nav-href="#/user" ng-click="pc.getUserInfo(pc.userService.userObject.userName)" name="user"  ng-if="uc.userService.userObject.id !== undefined">
         My Account
       </md-nav-item>
-      <md-nav-item md-nav-href="#/add" name="add">
+      <md-nav-item md-nav-click="pc.userService.showAddEdit()" name="add"  ng-if="uc.userService.userObject.id !== undefined">
         Add Post
       </md-nav-item>
-      <md-nav-item md-nav-click="uc.userService.logout()" name="logout">
+      <md-nav-item md-nav-click="uc.userService.logout()" name="logout"  ng-if="uc.userService.userObject.id !== undefined">
         Log Out
       </md-nav-item>
-      </div>
-      <md-nav-item ng-if="uc.userService.userObject.id == undefined" md-nav-href="#/login" name="login">
+      <md-nav-item ng-if="uc.userService.userObject.id == undefined" md-nav-click="uc.userService.showLogin()" name="login">
       Log In
       </md-nav-item>
-      <md-nav-item ng-if="uc.userService.userObject.id == undefined" md-nav-href="#/register" name="register">
+      <md-nav-item ng-if="uc.userService.userObject.id == undefined" md-nav-click="uc.userService.showRegister()" name="register">
       Register
       </md-nav-item>
     </md-nav-bar>

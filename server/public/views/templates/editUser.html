@@ -1,6 +1,4 @@
-<div class="container" ng-controller="PostController as pc" layout="row">
-    <div flex="25"></div>
-    <div flex="50" layout-margin="" layout="row" layout-align="center center">
+<div class="container" layout="row">
         <div layout="row" layout-align="center" style="border: 1px solid black; background-color: #333333; color: white;width:100%;">
             <div ng-if="pc.userService.userObject.userName === pc.userService.userToEdit.username" style="width:100%;">
                 <form ng-submit="pc.userService.addEditedUser(pc.userService.userToEdit)" layout="column" layout-align="center" layout-wrap layout-margin="">
@@ -20,11 +18,11 @@
                             Profile Picture:
                         </label>
                         <input type="text" class="addInput" ng-value="pc.userService.userToEdit.profilepic" ng-model="pc.userService.userToEdit.profilepic"/>
+                            <div>
                         <md-button ng-click="pc.openPicker('user')" class="md-raised" style="margin-left:0px;font-weight:bold;">Upload Picture</md-button>
                         <h4 style="margin:0px;">Image URL not loading?
                             <a ng-click="">Click here</a>
                         </h4>
-                    <div>
                         <md-button class="md-raised" style="margin-left:0px;font-weight:bold;" type="submit" name="submit">Edit user</md-button>
                     </div>
                 </form>
@@ -35,6 +33,4 @@
                 </h1>
             </div>
         </div>
-    </div>
-    <div flex="25"></div>
 </div>

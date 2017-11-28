@@ -1,4 +1,4 @@
-myApp.service('UserService', function ($http, $location) {
+myApp.service('UserService', function ($http, $mdDialog, $location) {
   console.log('UserService Loaded');
   var self = this;
   self.userObject = {};
@@ -108,7 +108,6 @@ myApp.service('UserService', function ($http, $location) {
   self.editPost = (post) => {
     console.log(post);
     self.isEditing = true;
-    $location.path('/add')
     self.editedPost = {
       postname: post.postname,
       postdesc: post.postdesc,
@@ -124,7 +123,7 @@ myApp.service('UserService', function ($http, $location) {
     console.log(self.editedPost);
     $http.put('/post/edit/' + self.editedPost.postid, self.editedPost).then(function (response) {
       self.isEditing = false;
-      $location.path('/home');
+      $mdDialog.cancel();
       self.getAllPosts();
     })
   }
@@ -152,7 +151,8 @@ myApp.service('UserService', function ($http, $location) {
     }
     console.log(postToAdd);
     $http.post('/post/add', postToAdd).then(function (response) {
-      $location.path('/home')
+      self.getAllPosts();
+      $mdDialog.cancel();
     })
   }
 
@@ -165,7 +165,6 @@ myApp.service('UserService', function ($http, $location) {
   }
 
   self.editUser = (loggedUser) => {
-    $location.path('/editUser');
     self.userToEdit = {
       username: loggedUser.username,
       firstname: loggedUser.firstname,
@@ -180,10 +179,50 @@ myApp.service('UserService', function ($http, $location) {
   self.addEditedUser = () => {
     console.log(self.userToEdit);
     $http.put('/user/edit/' + self.userToEdit.username, self.userToEdit).then(function(response) {
-      $location.path('/home');
+      self.getSelectedUser(self.userObject.userName);
+      $mdDialog.cancel();
     }).catch(function(err) {
       console.log(err);
       console.log('not working');
+    })
+  }
+
+  self.showEditUser = () => {
+    $mdDialog.show({
+      templateUrl: '../views/templates/editUser.html',
+      controller: 'PostController as pc',
+      clickOutsideToClose: true,
+      escapeToClose: true,
+    })
+  }
+
+  self.showLogin = () => {
+    $mdDialog.show({
+      templateUrl: '../views/templates/login.html',
+      controller: 'LoginController as lc',
+      clickOutsideToClose: true,
+      escapeToClose: true
+    })
+  }
+
+  self.showRegister = () => {
+    $mdDialog.show({
+      templateUrl: '../views/templates/register.html',
+      controller: 'LoginController as lc',
+      clickOutsideToClose: true,
+      escapeToClose: true
+    })
+  }
+
+  self.showAddEdit = () => {
+    $mdDialog.show({
+      templateUrl: '../views/templates/add.html',
+      controller: 'PostController as pc',
+      clickOutsideToClose: true,
+      escapeToClose: true,
+      onRemoving: function () {
+        self.isEditing = false;
+      }
     })
   }
 });

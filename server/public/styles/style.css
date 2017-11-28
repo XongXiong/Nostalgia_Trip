@@ -64,9 +64,6 @@ ul {
   overflow: hidden;
 }
 
-li {
-  float: left;
-}
 
 li a {
   display: block;
@@ -185,4 +182,13 @@ md-nav-bar md-nav-ink-bar {
 md-card {
   background-color: #222;
   color: rgb(180, 180, 180);
+}
+
+md-dialog {
+  background-color: #333333;  
+  max-width: 100%;
+}
+
+h1, h2, h3 {
+  margin: 0px;
 }

@@ -45,7 +45,6 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
     vm.addPost = () => {
         UserService.addPost(vm.postToAdd);
         vm.postToAdd = null;
-
     }
 
     vm.getUserInfo = (username) => {
@@ -53,5 +52,4 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
     }
 
     UserService.getAllPosts();
-
 });

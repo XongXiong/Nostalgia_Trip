@@ -1,9 +1,9 @@
 <div class="container" ng-controller="PostController as pc">
     <br>
-    <div layout-margin="" ng-controller="SelectUserController as sc">
+    <div layout-margin="">
         <h1>{{pc.returnedUser.data[0].username}}
         </h1>
-        <md-button class="md-raised md-primary" ng-if="pc.userService.userObject.userName === pc.returnedUser.data[0].username" ng-click="pc.userService.editUser(pc.returnedUser.data[0])">Edit Info</md-button>
+        <md-button class="md-raised md-primary" ng-if="pc.userService.userObject.userName === pc.returnedUser.data[0].username" ng-click="pc.userService.editUser(pc.returnedUser.data[0]); uc.userService.showEditUser()">Edit Info</md-button>
     </div>
     <div>
         <div layout="row" layout-margin="">
