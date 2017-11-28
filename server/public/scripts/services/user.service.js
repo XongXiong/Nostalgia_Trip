@@ -15,6 +15,30 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
     });
   }
 
+  self.showLogin = () => {
+    $mdDialog.show({
+      templateUrl: '../views/templates/login.html',
+      controller: 'LoginController as lc',
+      clickOutsideToClose: true,
+      escapeToClose: true,
+    })
+  }
+
+  self.showAlert = () => {
+    let confirm = $mdDialog.confirm()
+      .clickOutsideToClose(true)
+      .title('You are not logged in')
+      .textContent('Please log in before proceeding')
+      .ok('Log In')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm).then(function() {
+      self.showLogin();
+    }), function() {
+      $mdDialog.cancel();
+    }
+  };
+
   self.getSelectedUser = (username) => {
     if (self.userObject.id !== undefined) {
       $http.get('/post/user/' + username).then(function (response) {
@@ -31,8 +55,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
       $location.path('/user')
       })
     } else {
-      alert('You must be logged in to view user!');
-      $location.path('/login');
+      self.showAlert();
     }
   }
 
@@ -93,8 +116,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
         console.log('Vote not working');
       }
     } else {
-      alert('You must be logged in to like/dislike!');
-      $location.path('/login');
+      self.showAlert();
     }
   }
 
@@ -193,15 +215,6 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
       controller: 'PostController as pc',
       clickOutsideToClose: true,
       escapeToClose: true,
-    })
-  }
-
-  self.showLogin = () => {
-    $mdDialog.show({
-      templateUrl: '../views/templates/login.html',
-      controller: 'LoginController as lc',
-      clickOutsideToClose: true,
-      escapeToClose: true
     })
   }
 

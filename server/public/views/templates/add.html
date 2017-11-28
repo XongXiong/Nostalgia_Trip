@@ -1,74 +1,72 @@
 <div class="container" layout="row">
     
-        <div layout="row" layout-align="center" style="border: 1px solid black; background-color: #333333; color: white;">
+        
 
-            <div layout="column" layout-margin="" ng-hide="pc.userService.isEditing" style="width:100%">
-                <form ng-submit="pc.addPost(pc.postToAdd)">
-                    <div>
+            <div layout="column" layout-margin="" ng-hide="pc.userService.isEditing" style="color:white">
+                <form ng-submit="pc.addPost(pc.postToAdd)" layout="column" layout-align="center">
+                    
                         <label for="postname">
-                            <h2>Post Name:
-                                <h2>
+                            Post Name:
                         </label>
                         <input type="text" class="addInput" ng-model="pc.postToAdd.postname" />
-                    </div>
+                    
 
-                    <div>
+                    
                         <label for="postdesc" />
-                        <h2>Description:</h2>
+                        Description:
                         </label>
                         <input type="text" ng-model="pc.postToAdd.postdesc" class="addInput" />
-                    </div>
+                    
 
-                    <div>
+                    
                         <label for="postpic">
-                            <h2>Attach a photo:</h2>
+                            Attach a photo:
                         </label>
                         <input type="text" class="addInput" ng-model="pc.postToAdd.postpic" ng-value="pc.postToAdd.postpic"/>
+                        <div>
                         <md-button ng-click="pc.openPicker('post')" class="md-raised" style="margin-left:0px;font-weight:bold;">Upload Picture</md-button>
                         <h4 style="margin:0px;">Image URL not loading? <a ng-click="">Click here</a></h4>
-                    </div>
-                    <br>
-                    <div>
+                    
+                   
                         <md-button class="md-raised" style="margin-left:0px;font-weight:bold;" type="submit" name="submit">Add post</md-button>
                     </div>
                 </form>
             </div>
-            <div layout="column" layout-margin="" ng-show="pc.userService.isEditing" style="width:100%">
-                <form ng-submit="pc.userService.addEditedPost(pc.userService.editedPost)">
-                    <div>
+            <div layout="column" layout-margin="" ng-show="pc.userService.isEditing" style="color:white">
+                <form ng-submit="pc.userService.addEditedPost(pc.userService.editedPost)"  layout="column" layout-align="center">
+                    
                         <label for="postname">
-                            <h2>Post Name:
-                                <h2>
+                            Post Name:       
                         </label>
                         <input type="text" class="addInput" ng-model="pc.userService.editedPost.postname" ng-value="pc.userService.editedPost.postname"
                         />
-                    </div>
+                    
 
-                    <div>
+                    
                         <label for="postdesc" />
-                        <h2>Description:</h2>
+                        Description:
                         </label>
                         <input type="text" ng-model="pc.userService.editedPost.postdesc" ng-value="pc.userService.editedPost.postdesc" class="addInput"
                         />
-                    </div>
+                    
 
-                    <div>
+                    
                         <label for="postpic">
-                            <h2>Update photo:</h2>
+                            Update photo:
                         </label>
                         <input type="text" class="addInput" ng-model="pc.userService.editedPost.postpic" ng-value="pc.userService.editedPost.postpic"/>
                         
+                        <div>
                         <md-button ng-click="pc.openPicker('post')" class="md-raised" style="margin-left:0px;font-weight:bold;">Upload Picture</md-button>
                         <h4 style="margin:0px;">Image URL not loading?
                             <a ng-click="">Click here</a>
                         </h4>
-                    </div>
-                    <br>
-                    <div>
+                    
+                   
                         <md-button class="md-raised" type="submit" name="submit" style="font-weight:bold;margin-left:0px;">Edit post</md-button>
                     </div>
                 </form>
+            
             </div>
-        </div>
    
 </div>

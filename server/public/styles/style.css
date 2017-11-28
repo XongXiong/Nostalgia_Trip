@@ -180,13 +180,12 @@ md-nav-bar md-nav-ink-bar {
 }
 
 md-card {
-  background-color: #222;
+  background-color: #111;
   color: rgb(180, 180, 180);
 }
 
 md-dialog {
   background-color: #333333;  
-  max-width: 100%;
 }
 
 h1, h2, h3 {
