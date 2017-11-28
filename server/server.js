@@ -11,7 +11,7 @@ let userRouter = require('./routes/user.router');
 let registerRouter = require('./routes/register.router');
 let postRouter = require('./routes/post.router');
 
-let port = process.env.PORT || 5000;
+SVGAnimatedRect port = process.env.PORT || 5000;
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -36,6 +36,6 @@ app.use('/post', postRouter);
 app.use('/', indexRouter);
 
 // Listen //
-app.listen(port, function(){
+server.listen(port, function(){
    console.log('Listening on port:', port);
 });
