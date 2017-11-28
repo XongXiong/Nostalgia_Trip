@@ -9452,7 +9452,7 @@ function iosScrollFix(node) {
   angular.element(node).on('$md.pressdown', function(ev) {
     // Only touch events
     if (ev.pointer.type !== 't') return;
-    // Don't let a child content's touchstart ruin it for us.
+    // Don't var a child content's touchstart ruin it for us.
     if (ev.$materialScrollFixed) return;
     ev.$materialScrollFixed = true;
 
@@ -24049,7 +24049,7 @@ function VirtualRepeatContainerController($$rAF, $mdUtil, $mdConstant, $parse, $
 
     // Make one more attempt to get the size if it is 0.
     // This is not by any means a perfect approach, but there's really no
-    // silver bullet here.
+    // silver bulvar here.
     if (!this.size) {
       debouncedUpdateSize();
     }

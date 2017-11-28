@@ -4,7 +4,7 @@ myApp.controller('SelectUserController', function (UserService) {
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
     vm.userStatus = UserService.status;
-    let loggedUser = UserService.userObject.userName;
+    var loggedUser = UserService.userObject.userName;
 
     // UserService.getSelectedUser(loggedUser);
 });

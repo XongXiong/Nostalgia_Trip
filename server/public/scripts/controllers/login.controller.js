@@ -1,6 +1,6 @@
 myApp.controller('LoginController', function ($http, $location, $route, UserService, $mdDialog) {
   console.log('LoginController created');
-  var vm = this;
+  let vm = this;
   vm.userService = UserService;
   vm.user = {
     username: '',
@@ -11,26 +11,72 @@ myApp.controller('LoginController', function ($http, $location, $route, UserServ
   };
   vm.message = '';
 
+  let title = '';
+  let textContent = '';
+
+  vm.showIncorrect = () => {
+    let confirm = $mdDialog.confirm()
+      .clickOutsideToClose(true)
+      .title(title)
+      .textContent(textContent)
+      .ok('Try again')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm).then(function () {
+      title = '';
+      textContent = '';
+      UserService.showLogin();
+    }), function () {
+      title = '';
+      textContent = '';
+      $mdDialog.cancel();
+    }
+  }
+
+  vm.showBadReg = () => {
+    let confirm = $mdDialog.confirm()
+      .clickOutsideToClose(true)
+      .title(title)
+      .textContent(textContent)
+      .ok('Try again')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm).then(function () {
+      title = '';
+      textContent = '';
+      UserService.showRegister();
+    }), function () {
+      title = '';
+      textContent = '';
+      $mdDialog.cancel();
+    }
+  }
+
   vm.login = () => {
     console.log('LoginController -- login');
     if (vm.user.username === '' || vm.user.password === '') {
-      vm.message = "Enter your username and password!";
+      title = 'Missing fields';
+      textContent = '';
+      vm.showIncorrect();
     } else {
       console.log('LoginController -- login -- sending to server...', vm.user);
       $http.post('/', vm.user).then(function (response) {
         if (response.data.username) {
           console.log('LoginController -- login -- success: ', response.data);
           // location works with SPA (ng-route)
-          // $location.path('/home'); // http://localhost:5000/#/home
           $route.reload();
           $mdDialog.cancel();
         } else {
           console.log('LoginController -- login -- failure: ', response);
-          vm.message = "Incorrect username or password. Please try again";
+          title = 'Error Logging In';
+          textContent = 'Incorrect username or password. Please try again.';
+          vm.showIncorrect();
         }
       }).catch(function (response) {
         console.log('LoginController -- registerUser -- failure: ', response);
-        vm.message = "Incorrect username or password. Please try again";
+        title = 'Error Logging In';
+        textContent = 'Incorrect username or password. Please try again.';
+        vm.showIncorrect();
       });
     }
   };
@@ -38,9 +84,13 @@ myApp.controller('LoginController', function ($http, $location, $route, UserServ
   vm.registerUser = () => {
     console.log('LoginController -- registerUser');
     if (vm.user.username === '' || vm.user.password === '') {
-      vm.message = "Choose a username and password!";
+      title = 'Missing fields'
+      textContent = 'Choose a username and password';
+      vm.showBadReg();
     } else if (vm.user.password !== vm.user.password2) {
-      vm.message = "Passwords don't match!";
+      title = 'Attention'
+      textContent = 'Passwords don\'t match.';
+      vm.showBadReg();
     } else {
       console.log('LoginController -- registerUser -- sending to server...', vm.user);
       $http.post('/register', vm.user).then(function (response) {
@@ -49,7 +99,9 @@ myApp.controller('LoginController', function ($http, $location, $route, UserServ
         UserService.showLogin();
       }).catch(function (response) {
         console.log('LoginController -- registerUser -- error');
-        vm.message = "Please try again."
+        title = 'User already exists';
+        textContent = 'Please try again';
+        vm.showBadReg();
       });
     }
   }

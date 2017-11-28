@@ -25,7 +25,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
   }
 
   self.showAlert = () => {
-    let confirm = $mdDialog.confirm()
+    var confirm = $mdDialog.confirm()
       .clickOutsideToClose(true)
       .title('You are not logged in')
       .textContent('Please log in before proceeding')
@@ -90,7 +90,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
     }
 
   self.postVote = (upDown, postId, votes) => {
-    let postVotes = {
+    var postVotes = {
       voteCount: votes
     }
     if (self.userObject.id !== undefined) {
@@ -161,7 +161,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
   self.addPost = (newPost) => {
     console.log(self.userObject);
     console.log(newPost);
-    let postToAdd = {
+    var postToAdd = {
       postname: newPost.postname,
       postdesc: newPost.postdesc,
       postpic: newPost.postpic,
@@ -169,7 +169,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
       username: self.userObject.userName
     }
     if (postToAdd.postpic === '' || postToAdd == undefined) {
-      postToAdd.postpic = 'http://hdwall.us/wallpaper/abstract_artistic_clocks_lacza_psychedelic_surreal_surrealism_time_desktop_2560x1440_hd-wallpaper-1331725.jpg';
+      postToAdd.postpic = '../views/images/clock.jpg';
     }
     console.log(postToAdd);
     $http.post('/post/add', postToAdd).then(function (response) {

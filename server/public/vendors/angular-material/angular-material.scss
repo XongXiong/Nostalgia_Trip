@@ -2745,7 +2745,7 @@ $md-datepicker-button-padding: 8px !default;
 
 
 md-datepicker {
-  // Don't let linebreaks happen between the open icon-button and the input.
+  // Don't var linebreaks happen between the open icon-button and the input.
   white-space: nowrap;
   overflow: hidden;
   vertical-align: middle;
@@ -4399,7 +4399,7 @@ $max-dense-menu-height: 2 * $baseline-grid + $max-visible-items * $dense-menu-it
     opacity: 0;
   }
 
-  // Don't let the user click something until it's animated
+  // Don't var the user click something until it's animated
   &:not(.md-clickable) {
     pointer-events: none;
   }
@@ -5311,7 +5311,7 @@ md-input-container {
   // Fix 1px alignment issue to line up with text inputs (and spec)
   transform: translateY(-1px);
 
-  // Don't let the user select a new choice while it's animating
+  // Don't var the user select a new choice while it's animating
   &:not(.md-clickable) {
     pointer-events: none;
   }

@@ -1,6 +1,6 @@
 myApp.controller('PostController', function ($http, $mdDialog, UserService) {
     console.log('PostController created');
-    let vm = this;
+    var vm = this;
     vm.userService = UserService
 
     vm.posts = UserService.posts;
@@ -12,7 +12,7 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
         postpic: ''
     }
     
-    let fsClient = filestack.init('AnXpCAZX8QyrKizqSb76Rz');
+    var fsClient = filestack.init('AnXpCAZX8QyrKizqSb76Rz');
     vm.openPicker = (status) => {
         fsClient.pick({
             fromSources: ["local_file_system", "url", "imagesearch", "facebook", "instagram", "dropbox"]
@@ -37,7 +37,7 @@ myApp.controller('PostController', function ($http, $mdDialog, UserService) {
     vm.search = (postName) => {
         $http.get('/post/' + postName).then(function (response) {
             console.log(response);
-            let lmgtfyUrl = response.data;
+            var lmgtfyUrl = response.data;
             window.open(lmgtfyUrl, "_blank");
         })
     }

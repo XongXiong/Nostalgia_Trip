@@ -191,3 +191,17 @@ md-dialog {
 h1, h2, h3 {
   margin: 0px;
 }
+
+md-dialog.md-default-theme,
+md-dialog {
+  background-color: #333333;
+  color: white;
+}
+
+md-dialog .md-actions .md-button,
+md-dialog md-dialog-actions .md-button {
+  background-color: white;
+  color: #333333;
+  font-weight: bold;
+}
+

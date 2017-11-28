@@ -436,7 +436,7 @@ function $RouteProvider() {
      *       <a href="Book/Moby/ch/1">Moby: Ch1</a> |
      *       <a href="Book/Gatsby">Gatsby</a> |
      *       <a href="Book/Gatsby/ch/4?key=value">Gatsby: Ch4</a> |
-     *       <a href="Book/Scarlet">Scarlet Letter</a><br/>
+     *       <a href="Book/Scarlet">Scarvar Letter</a><br/>
      *
      *       <div ng-view></div>
      *
@@ -989,7 +989,7 @@ ngRouteModule.directive('ngView', ngViewFillContentFactory);
           <a href="Book/Moby/ch/1">Moby: Ch1</a> |
           <a href="Book/Gatsby">Gatsby</a> |
           <a href="Book/Gatsby/ch/4?key=value">Gatsby: Ch4</a> |
-          <a href="Book/Scarlet">Scarlet Letter</a><br/>
+          <a href="Book/Scarlet">Scarvar Letter</a><br/>
 
           <div class="view-animate-container">
             <div ng-view class="view-animate"></div>

@@ -10164,7 +10164,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       // copy the new attributes on the old attrs object
       forEach(src, function(value, key) {
         // Check if we already set this attribute in the loop above.
-        // `dst` will never contain hasOwnProperty as DOM parser won't let it.
+        // `dst` will never contain hasOwnProperty as DOM parser won't var it.
         // You will get an "InvalidCharacterError: DOM Exception 5" error if you
         // have an attribute like "has-own-property" or "data-has-own-property", etc.
         if (!dst.hasOwnProperty(key) && key.charAt(0) !== '$') {
@@ -14613,7 +14613,7 @@ function $LogProvider() {
     // to see the stack trace. There is no way to feature-detect it so there's a chance
     // of the user agent sniffing to go wrong but since it's only about logging, this shouldn't
     // break apps. Other browsers display errors in a sensible way and some of them map stack
-    // traces along source maps if available so it makes sense to let browsers display it
+    // traces along source maps if available so it makes sense to var browsers display it
     // as they want.
     var formatStackTrace = msie || /\bEdge\//.test($window.navigator && $window.navigator.userAgent);
 
@@ -26592,7 +26592,7 @@ function classDirective(name, selector) {
      <file name="protractor.js" type="protractor">
        var ps = element.all(by.css('p'));
 
-       it('should let you toggle the class', function() {
+       it('should var you toggle the class', function() {
 
          expect(ps.first().getAttribute('class')).not.toMatch(/bold/);
          expect(ps.first().getAttribute('class')).not.toMatch(/has-error/);
@@ -26604,7 +26604,7 @@ function classDirective(name, selector) {
          expect(ps.first().getAttribute('class')).toMatch(/has-error/);
        });
 
-       it('should let you toggle string example', function() {
+       it('should var you toggle string example', function() {
          expect(ps.get(1).getAttribute('class')).toBe('');
          element(by.model('style')).clear();
          element(by.model('style')).sendKeys('red');
@@ -28549,7 +28549,7 @@ var ngModelMinErr = minErr('ngModel');
  * data-binding. Notice how different directives (`contenteditable`, `ng-model`, and `required`)
  * collaborate together to achieve the desired result.
  *
- * `contenteditable` is an HTML5 attribute, which tells the browser to let the element
+ * `contenteditable` is an HTML5 attribute, which tells the browser to var the element
  * contents be edited in place by the user.
  *
  * We are using the {@link ng.service:$sce $sce} service here and include the {@link ngSanitize $sanitize}
