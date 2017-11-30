@@ -147,6 +147,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
       self.isEditing = false;
       $mdDialog.cancel();
       self.getAllPosts();
+      self.getSelectedUser(self.userObject.userName);
     })
   }
 
@@ -177,6 +178,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
       $http.delete('/post/' + postId).then(function (response) {
         console.log('Post Deleted');
         self.getAllPosts();
+        self.getSelectedUser(self.userObject.userName);
       }).catch(function(err){
         console.log('Error deleting', err);
       });
