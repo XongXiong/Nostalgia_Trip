@@ -7,7 +7,9 @@ myApp.controller('LoginController', function ($http, $location, $route, UserServ
     password: '',
     password2: '',
     firstName: '',
-    lastName: ''
+    lastName: '',
+    bio: 'Proud user of Nostalgia Trip',
+    profilepic: '../views/images/No-Avatar.png'
   };
   vm.message = '';
 

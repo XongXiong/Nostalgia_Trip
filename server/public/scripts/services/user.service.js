@@ -150,12 +150,39 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
     })
   }
 
+  self.showDelConf = () => {
+    let confirm = $mdDialog.confirm()
+      .clickOutsideToClose(true)
+      .title('You are not logged in')
+      .textContent('Please log in before proceeding')
+      .ok('Log In')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm).then(function () {
+      self.showLogin();
+    }), function () {
+      $mdDialog.cancel();
+    }
+  };
+
   self.deletePost = (postId) => {
-    $http.delete('/post/' + postId).then(function (response) {
-      console.log('Post Deleted');
-      self.getAllPosts();
-      $location.path('/home');
-    })
+    let confirm = $mdDialog.confirm()
+      .clickOutsideToClose(true)
+      .title('Warning!')
+      .textContent('Are you sure you want to delete this post?')
+      .ok('Absolutely')
+      .cancel('Maybe not');
+
+    $mdDialog.show(confirm).then(function () {
+      $http.delete('/post/' + postId).then(function (response) {
+        console.log('Post Deleted');
+        self.getAllPosts();
+      }).catch(function(err){
+        console.log('Error deleting', err);
+      });
+    }), function () {
+      $mdDialog.hide();
+    }
   }
 
   self.addPost = (newPost) => {

@@ -12,10 +12,11 @@
                         <label for="postpic">
                             Attach a photo:
                         </label>
-                        <input type="text" class="addInput" ng-model="pc.postToAdd.postpic" ng-value="pc.postToAdd.postpic"/>
+                        <div style="max-height:200px;max-width:200px">
+                        <img ng-src="{{pc.postToAdd.postpic}}" style="max-width:200px;max-height:200px;position:relative;"/>
+                        </div>
                         <div>
                         <md-button ng-click="pc.openPicker('post')" class="md-raised" style="margin-left:0px;font-weight:bold;">Upload Picture</md-button>
-                        <h4 style="margin:0px;">Image URL not loading? <a ng-click="">Click here</a></h4>
                         <md-button class="md-raised" style="margin-left:0px;font-weight:bold;" type="submit" name="submit">Add post</md-button>
                     </div>
                 </form>
@@ -33,12 +34,11 @@
                         <label for="postpic">
                             Update photo:
                         </label>
-                        <input type="text" class="addInput" ng-model="pc.userService.editedPost.postpic" ng-value="pc.userService.editedPost.postpic"/>
+                        <div style="max-height:200px;max-width:200px">
+                            <img ng-src="{{pc.userService.editedPost.postpic}}" style="max-width:200px;max-height:200px;position:relative;"/>
+                        </div>
                         <div>
                         <md-button ng-click="pc.openPicker('post')" class="md-raised" style="margin-left:0px;font-weight:bold;">Upload Picture</md-button>
-                        <h4 style="margin:0px;">Image URL not loading?
-                            <a ng-click="">Click here</a>
-                        </h4>
                         <md-button class="md-raised" type="submit" name="submit" style="font-weight:bold;margin-left:0px;">Edit post</md-button>
                     </div>
                 </form>

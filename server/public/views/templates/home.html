@@ -1,8 +1,8 @@
 <div class="container">
     <h1 class="lead" style="text-align:center; margin-top:5px;font-size:40px">Nostalgia Trip, where memories live on.</h1>
 </div>
-<div flex layout="row" layout-wrap>
-    <div flex="33" class="itemCard" ng-repeat="post in pc.posts.data">
+<div flex layout="row" layout-align="space-around" layout-wrap>
+    <div flex="25" class="itemCard" ng-repeat="post in pc.posts.data">
         <md-card>
             <img ng-src="{{post.postpic}}" class="md-card-image">
             <md-card-title align="center">
