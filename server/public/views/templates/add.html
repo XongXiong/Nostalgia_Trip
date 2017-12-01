@@ -1,14 +1,15 @@
-<div class="container" layout="row">
+<div class="container" layout="row"></div>
             <div layout="column" layout-margin="" ng-hide="pc.userService.isEditing" style="color:white">
-                <form ng-submit="pc.addPost(pc.postToAdd)" layout="column" layout-align="center">
+                <h1 class="dialogHead">Create a post</h1>
+                <form ng-submit="pc.addPost(pc.postToAdd)" layout="column" layout-align="center" layout-margin="">
                         <label for="postname">
                             Post Name:
                         </label>
-                        <input type="text" class="addInput" ng-model="pc.postToAdd.postname" />
+                        <input  spellcheck="true"  spellcheck="true" type="text" class="addItemInput" maxlength="50" ng-model="pc.postToAdd.postname" />
                         <label for="postdesc">
                         Description:
                         </label>
-                        <input type="text" ng-model="pc.postToAdd.postdesc" class="addInput" />
+                        <textarea type="text" ng-model="pc.postToAdd.postdesc" maxlength="1000" class="addItemText"></textarea>
                         <label for="postpic">
                             Attach a photo:
                         </label>
@@ -22,15 +23,16 @@
                 </form>
             </div>
             <div layout="column" layout-margin="" ng-show="pc.userService.isEditing" style="color:white">
+                                <h1 class="dialogHead">Edit a post</h1>
                 <form ng-submit="pc.userService.addEditedPost(pc.userService.editedPost)"  layout="column" layout-align="center">
                         <label for="postname">
                             Post Name:       
                         </label>
-                        <input type="text" class="addInput" ng-model="pc.userService.editedPost.postname" ng-value="pc.userService.editedPost.postname"/>
+                        <input  spellcheck="true"  spellcheck="true" type="text" class="addItemInput" maxlength="50" ng-model="pc.userService.editedPost.postname" ng-value="pc.userService.editedPost.postname"/>
                         <label for="postdesc">
                         Description:
                         </label>
-                        <input type="text" ng-model="pc.userService.editedPost.postdesc" ng-value="pc.userService.editedPost.postdesc" class="addInput"/>                    
+                        <textarea type="text" ng-model="pc.userService.editedPost.postdesc" maxlength="1000" ng-value="pc.userService.editedPost.postdesc" class="addItemText"></textarea>                    
                         <label for="postpic">
                             Update photo:
                         </label>
@@ -39,7 +41,7 @@
                         </div>
                         <div>
                         <md-button ng-click="pc.openPicker('post')" class="md-raised" style="margin-left:0px;font-weight:bold;">Upload Picture</md-button>
-                        <md-button class="md-raised" type="submit" name="submit" style="font-weight:bold;margin-left:0px;">Edit post</md-button>
+                        <md-button class="md-raised" type="submit" name="submit" style="font-weight:bold;margin-left:0px;">Save edited post</md-button>
                     </div>
                 </form>
             </div>

@@ -4,11 +4,10 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
   self.userObject = {};
   self.posts = { data: [] };
   self.isEditing = false;
-  self.returnedUser = {data:[]};
+  self.returnedUser = { data: [] };
 
   self.getAllPosts = () => {
     $http.get('/post').then(function (response) {
-      console.log(response.data);
       self.posts.data = response.data;
     }).catch(function (err) {
       console.log('Could not get all posts');
@@ -32,10 +31,10 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
       .ok('Log In')
       .cancel('Cancel');
 
-    $mdDialog.show(confirm).then(function() {
+    $mdDialog.show(confirm).then(function () {
       self.showLogin();
-    }), function() {
-      $mdDialog.cancel();
+    }), function () {
+      $mdDialog.hide();
     }
   };
 
@@ -44,15 +43,16 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
       $http.get('/post/user/' + username).then(function (response) {
         console.log('Getting ' + username + '\'s data');
         console.log(response.data);
-        if (response.data.length === 0){
-          $http.get('/user/' + username).then(function(response) {
+        if (response.data.length === 0) {
+          $http.get('/user/' + username).then(function (response) {
             console.log(response.data);
             self.returnedUser.data = response.data;
           })
         } else {
-        self.returnedUser.data = response.data;
-      }
-      $location.path('/user')
+          self.returnedUser.data = response.data;
+        } if (window.location.hash === '#/user' || window.location.hash === '/user') {
+          $location.path('/user')
+        }
       })
     } else {
       self.showAlert();
@@ -79,15 +79,15 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
     });
   }
 
-    self.logout = () => {
-      console.log('UserService -- logout');
-      $http.get('/user/logout').then(function (response) {
-        console.log('UserService -- logout -- logged out');
-        self.isEditing = false;
-        $location.path("/home");
-        self.userObject = {};
-      });
-    }
+  self.logout = () => {
+    console.log('UserService -- logout');
+    $http.get('/user/logout').then(function (response) {
+      console.log('UserService -- logout -- logged out');
+      self.isEditing = false;
+      $location.path("/home");
+      self.userObject = {};
+    });
+  }
 
   self.postVote = (upDown, postId, votes) => {
     let postVotes = {
@@ -100,6 +100,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
         $http.put('/post/' + postId, postVotes).then(function (response) {
           console.log('Upvote!');
           self.getAllPosts();
+          self.getSelectedUser(self.userObject.userName);
         }).catch(function (err) {
           console.log('Error upvoting');
         })
@@ -108,6 +109,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
         console.log(postVotes);
         $http.put('/post/' + postId, postVotes).then(function (response) {
           console.log('Downvote!');
+          self.getSelectedUser(self.userObject.userName);
           self.getAllPosts();
         }).catch(function (err) {
           console.log('Error downvoting');
@@ -145,7 +147,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
     console.log(self.editedPost);
     $http.put('/post/edit/' + self.editedPost.postid, self.editedPost).then(function (response) {
       self.isEditing = false;
-      $mdDialog.cancel();
+      $mdDialog.hide();
       self.getAllPosts();
       self.getSelectedUser(self.userObject.userName);
     })
@@ -162,7 +164,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
     $mdDialog.show(confirm).then(function () {
       self.showLogin();
     }), function () {
-      $mdDialog.cancel();
+      $mdDialog.hide();
     }
   };
 
@@ -179,7 +181,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
         console.log('Post Deleted');
         self.getAllPosts();
         self.getSelectedUser(self.userObject.userName);
-      }).catch(function(err){
+      }).catch(function (err) {
         console.log('Error deleting', err);
       });
     }), function () {
@@ -203,7 +205,7 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
     console.log(postToAdd);
     $http.post('/post/add', postToAdd).then(function (response) {
       self.getAllPosts();
-      $mdDialog.cancel();
+      $mdDialog.hide();
     })
   }
 
@@ -229,10 +231,10 @@ myApp.service('UserService', function ($http, $mdDialog, $location) {
 
   self.addEditedUser = () => {
     console.log(self.userToEdit);
-    $http.put('/user/edit/' + self.userToEdit.username, self.userToEdit).then(function(response) {
+    $http.put('/user/edit/' + self.userToEdit.username, self.userToEdit).then(function (response) {
       self.getSelectedUser(self.userObject.userName);
-      $mdDialog.cancel();
-    }).catch(function(err) {
+      $mdDialog.hide();
+    }).catch(function (err) {
       console.log(err);
       console.log('not working');
     })

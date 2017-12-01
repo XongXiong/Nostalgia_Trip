@@ -31,7 +31,7 @@ myApp.controller('LoginController', function ($http, $location, $route, UserServ
     }), function () {
       title = '';
       textContent = '';
-      $mdDialog.cancel();
+      $mdDialog.hide();
     }
   }
 
@@ -50,7 +50,7 @@ myApp.controller('LoginController', function ($http, $location, $route, UserServ
     }), function () {
       title = '';
       textContent = '';
-      $mdDialog.cancel();
+      $mdDialog.hide();
     }
   }
 
@@ -61,13 +61,11 @@ myApp.controller('LoginController', function ($http, $location, $route, UserServ
       textContent = '';
       vm.showIncorrect();
     } else {
-      console.log('LoginController -- login -- sending to server...', vm.user);
+      console.log('LoginController -- login -- sending user to server.');
       $http.post('/', vm.user).then(function (response) {
         if (response.data.username) {
-          console.log('LoginController -- login -- success: ', response.data);
-          // location works with SPA (ng-route)
           $route.reload();
-          $mdDialog.cancel();
+          $mdDialog.hide();
         } else {
           console.log('LoginController -- login -- failure: ', response);
           title = 'Error Logging In';
@@ -94,10 +92,10 @@ myApp.controller('LoginController', function ($http, $location, $route, UserServ
       textContent = 'Passwords don\'t match.';
       vm.showBadReg();
     } else {
-      console.log('LoginController -- registerUser -- sending to server...', vm.user);
+      console.log('LoginController -- registerUser -- sending new user to server');
       $http.post('/register', vm.user).then(function (response) {
         console.log('LoginController -- registerUser -- success');
-        $mdDialog.cancel();
+        $mdDialog.hide();
         UserService.showLogin();
       }).catch(function (response) {
         console.log('LoginController -- registerUser -- error');

@@ -1,19 +1,20 @@
 <div class="container" layout="row">
         <div layout="row" layout-align="center" style="color: white;width:100%;">
-            <div ng-if="pc.userService.userObject.userName === pc.userService.userToEdit.username" style="width:100%;">
+            <div ng-if="pc.userService.userObject.userName === pc.userService.userToEdit.username" style="width:100%;" layout-margin="">
+                        <h1 class="lead dialogHead">Edit User</h1>
                 <form ng-submit="pc.userService.addEditedUser(pc.userService.userToEdit)" layout="column" layout-align="center" layout-wrap layout-margin="">
                         <label for="firstname">
                             First Name:
                         </label>
-                        <input type="text" class="addInput" ng-value="pc.userService.userToEdit.firstname" ng-model="pc.userService.userToEdit.firstname"/>
+                        <input  spellcheck="true" type="text" class="addItemInput" maxlength="30" ng-value="pc.userService.userToEdit.firstname" ng-model="pc.userService.userToEdit.firstname"/>
                         <label for="lastname" />
                         Last Name:
                         </label>
-                        <input type="text" ng-value="pc.userService.userToEdit.lastname" ng-model="pc.userService.userToEdit.lastname" class="addInput"/>
+                        <input  spellcheck="true" type="text" ng-value="pc.userService.userToEdit.lastname" maxlength="30" ng-model="pc.userService.userToEdit.lastname" class="addItemInput"/>
                         <label for="bio">
                             Bio:
                         </label>
-                        <input type="text" class="addInput" ng-value="pc.userService.userToEdit.bio" ng-model="pc.userService.userToEdit.bio" />
+                        <textarea type="text" class="addItemText" ng-value="pc.userService.userToEdit.bio" maxlength="1000" ng-model="pc.userService.userToEdit.bio"></textarea>
                         <label for="profilepic">
                             Profile Picture:
                         </label>
@@ -22,7 +23,7 @@
                         </div>
                             <div>
                         <md-button ng-click="pc.openPicker('user')" class="md-raised" style="margin-left:0px;font-weight:bold;">Upload Picture</md-button>
-                        <md-button class="md-raised" style="margin-left:0px;font-weight:bold;" type="submit" name="submit">Edit user</md-button>
+                        <md-button class="md-raised" style="margin-left:0px;font-weight:bold;" type="submit" name="submit">Update user</md-button>
                     </div>
                 </form>
             </div>

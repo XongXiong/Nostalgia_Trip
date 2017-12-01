@@ -112,19 +112,21 @@ li a:hover {
   width: 33%;
 }
 
-.addInput {
+.addItemInput {
   height: 25px;
-  width: 80%;
+  width: 90%;
+  font-size: 21px;
+}
+
+.addItemText {
+  height: 300px;
+  width: 90%;
   font-size: 21px;
 }
 
 .bioImg {
   max-width: 100%;
   max-height: 100%;
-}
-
-.contHead {
-  text-align: center;
 }
 
 a {
@@ -169,10 +171,12 @@ md-nav-bar md-nav-ink-bar {
 md-card {
   background-color: #111;
   color: rgb(180, 180, 180);
+  max-height: 2000px;
 }
 
 md-dialog {
   background-color: #333333;  
+
 }
 
 h1, h2, h3 {
@@ -192,3 +196,11 @@ md-dialog md-dialog-actions .md-button {
   font-weight: bold;
 }
 
+.dialogHead {
+  text-align: center;
+}
+
+#md-card-image {
+  max-width: 100%;
+  max-height: 1000px;
+}
