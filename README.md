@@ -2,7 +2,7 @@
 
 Hosted on Heroku at: [nostalgia-trip.herokuapp.com](nostalgia-trip.herokuapp.com)
 
-Nostalgia Trip us a full-stack web application that serves as a cental hub for users to connect to their memories of the past. It allows users to create profiles which in turn will allow them to create, edit, "like/unlike", and delete posts. 
+Nostalgia Trip is a full-stack web application that serves as a cental hub for users to connect to their memories of the past. It allows users to create profiles which in turn will allow them to create, edit, "like/unlike", and delete posts. 
 
 ## Built With
 
@@ -30,6 +30,7 @@ Nostalgia Trip us a full-stack web application that serves as a cental hub for u
 Link to software that is required to install the app (e.g. node).
 
 - [Node.js](https://nodejs.org/en/)
+- PostgreSQL
 
 ### Installing
 
@@ -87,7 +88,7 @@ CREATE TABLE "posts" (
 
 1. Run `heroku create`
 2. Run `git push heroku master`
-
+3. Run `heroku open`
 
 ## Author
 
