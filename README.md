@@ -23,7 +23,7 @@ Nostalgia Trip is a full-stack web application that serves as a cental hub for u
 1. Fork and Clone Repository
 2. Run `npm install --save`
 3. Run `npm start`
-4. Open [http://localhost:5000](http://localhost:5000) in your browser
+4. Open [http://localhost:5000](http://localhost:5000) in your browser (Google Chrome Preffered)
 
 ### Prerequisites
 
